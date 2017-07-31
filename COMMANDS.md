@@ -106,3 +106,115 @@ rails c
 > User.first
 
 ```
+## 04_08-Many-To-Many Associations - Testing Via The Console
+
+```bash
+$ rails c
+```
+
+```ruby
+> Project.first
+> p = Project.new
+> c = Company.first
+> p = Project.new
+> c2 = Company.new
+> c2.name = 'Client Inc.'
+> c2.save
+> p.name = "Project XYZ"
+> p.company = c2
+> p.save
+> p
+> p.default_rate = 60
+> p.save
+> u = User.first
+> u.company
+> p
+> w = Work.new 
+> w.project = p 
+> w.user = u
+> w
+> w.datetimepreformed = '2013-12-10 10:03:02'
+> w.hours = 2.5
+> w.save
+> u.works
+> p.works
+> u.projects
+```
+
+##  04_09-Rails Console - Adding Data
+
+```
+Company (Name)
+    1. Bentley Hoke
+    2. Client Inc.
+    3. ABC, Ltd.
+
+User (First Name, Last Name, Company)
+    1.     name: Brian Hoke
+        company: Bentley Hoke
+    2.     name: Jane Doe
+        company: Bentley Hoke
+    3.     name: Ralph Martinez
+        company: Client Inc.
+
+Project (Name, Company, Default Rate)
+    1.      name: Project XYZ
+         company: Client Inc.
+    default rate: 60
+    2.      name: Second Proj
+         company: ABC, Ltd.
+    default rate: 125
+    
+Work (Project, User, Date Preformed, Number of hours)
+    1. date/time : 2013-12-10 10:03:02
+           user: Brian Hoke
+        project: Project XYZ
+         hours: 2.5
+    2. date/time: 2013-12-11 17:24:57
+            user: Jane Doe
+         project: Project XYZ
+           hours: 0.75
+```
+```bash
+$ rails c
+```
+```ruby
+> Company.all
+> c = Company.new
+> c.name = "ABC, Ltd."
+> c.save
+> c
+> User.all
+> u = User.new
+> u.fname = 'Jane'
+> u.lname = 'Doe'
+> u.company = Company.first
+> u.save
+> u.company
+> u = User.new
+> u.fname = 'Ralph'
+> u.lname = 'Martinez'
+> Company.all
+> u.company_id = 2
+> u.save
+> u.company
+> Project.all
+> p = Project.new
+> p.name = 'Second Proj'
+> p.default_rate = 125
+> p.save
+> p
+> c
+> p.company = c
+> p.save
+> p
+> p.company
+> Work.all
+> w = Work.new
+> w.dateperformed = '2013-12-11 17:24:57'
+> w.hours = 0.75
+> User.all
+> w.user_id = 2
+> 
+> w.save
+```
