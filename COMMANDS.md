@@ -246,3 +246,58 @@ $ rails c
 $ rails g migration change_hours_field_in_works_to_integer
 $ rake db:migrate
 ```
+
+## 04_12-Fixtures - Exercise Review
+
+```
+Company (Name)
+    1. Bentley Hoke
+    2. Client Inc.
+    3. ABC, Ltd.
+
+User (First Name, Last Name, Company)
+    1.     name: Brian Hoke
+        company: Bentley Hoke
+    2.     name: Jane Doe
+        company: Bentley Hoke
+    3.     name: Ralph Martinez
+        company: Client Inc.
+
+Project (Name, Company, Default Rate)
+    1.      name: Project XYZ
+         company: Client Inc.
+    default rate: 60
+    2.      name: Second Proj
+         company: ABC, Ltd.
+    default rate: 125
+    
+Work (Project, User, Date Preformed, Number of hours)
+    1. date/time : 2013-12-10 10:03:02
+           user: Brian Hoke
+        project: Project XYZ
+         hours: 2.5
+    2. date/time: 2013-12-11 17:24:57
+            user: Jane Doe
+         project: Project XYZ
+           hours: 0.75
+<% 10.times do |n| %>            
+ work_<%= n%>
+    [add fields here]
+<% end%>
+
+ruby ternary operator:
+<%= n > 10 ? 'greater than 10' : 'less thn 10'%>
+```
+```bash
+$ rake db:fixtures:load
+$ rails c
+```
+```ruby 
+> Company.all
+> User.all
+> Project.all
+> Work.all
+> Work.first.user
+> Work.last.user
+> Work.first.projectt
+```
