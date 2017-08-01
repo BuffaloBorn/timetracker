@@ -215,6 +215,27 @@ $ rails c
 > w.hours = 0.75
 > User.all
 > w.user_id = 2
-> 
+> p = Project.first
+> w.project = p
 > w.save
+> Work.all
+> my_user = User.find(2)
+> my_user.projects
+> my_user.works
+> c
+> c.projects
+```
+
+## 04_10-Fixtures
+
+```bash
+$ rake db:fixtures:load
+$ rails c
+```
+```ruby 
+> User.all
+> Company.all
+> User.first.company
+> Project.all
+> Works.all
 ```
