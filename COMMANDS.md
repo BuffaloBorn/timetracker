@@ -239,3 +239,10 @@ $ rails c
 > Project.all
 > Works.all
 ```
+
+## 04_11-Migrations - Changing A Field
+
+```bash
+$ rails g migration change_hours_field_in_works_to_integer
+$ rake db:migrate
+```
