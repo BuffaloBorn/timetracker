@@ -397,3 +397,29 @@ $ rails c
 > w.hours = 2
 > w.save
 ```
+## 04_16-Validations - Exercise Review
+
+
+```bash
+$ rails c
+```
+```ruby 
+> u = User.new
+> u.save
+> u.errors
+> w = Work.new
+> w.save
+> w.errors
+> w.project = Project.first
+> w.user = User.first
+> w.hours = 2.5
+> w.save
+> w.errors
+> w.hours = 4
+> w.save
+> w.errors
+> w.dateperformed = '2015-11-10 08:08:08'
+> w.save
+> w.errors
+> w.dateperformed = '2011-11-10 08:08:08'
+```
