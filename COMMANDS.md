@@ -345,3 +345,55 @@ $ rails c
 > Work.recent.size
 >
 ```
+
+## 04_15-Validations
+
+#### Validations make you rails apps database-agnostic. Allowng the capacity of rails app to function with any vendor’s database management system (DBMS).
+
+```bash
+$ rails c
+```
+
+```ruby 
+> p = Project.new
+> p.save
+> p.errors
+> p.name = "Some New Project"
+> c = Company.first
+> p.company = c
+> p.save
+> p.delete
+> p = Project.new
+> p.save
+> p
+> p.valid?
+> p.name = "Some New Project2"
+> c = Company.last
+> p.company = c
+> p.valid?
+> p.save
+> exit
+```
+
+```bash
+$ rails c
+```
+
+```ruby 
+> w = Work.new
+> w.save
+> w.errors
+> w.hours = 'a'
+> w.save
+> w.errors
+> w.hours = 0
+> w.save
+> c = Project.last
+> w.project = c
+> w.user = User.last
+> w.hours = 2.5
+> w.save
+> w.errors
+> w.hours = 2
+> w.save
+```
