@@ -299,5 +299,28 @@ $ rails c
 > Work.all
 > Work.first.user
 > Work.last.user
-> Work.first.projectt
+> Work.first.project
+> Work.last.project
+```
+## 04_13-AR Query Interface
+
+```bash
+$ rake db:fixtures:load
+$ rails c
+```
+```ruby 
+> u = User.first
+> u = User.last
+> u = User.find(767380590)
+> User.all
+> u = User.find(767380590)
+> w = Work.first(3)
+> w = Work.last(2)
+> u = User.find_by fname: 'Jane'
+> w = Work.find_by hours: 23
+> fulldayworkitems = Work.where('hours=?', 23)
+> fulldayworkitems = Work.where('hours=23')
+> lowdefaultrateprojects = Project.where('default_rate < ?', 100)
+> companies = Company.order('name')
+> companies = Company.order('name desc')
 ```
