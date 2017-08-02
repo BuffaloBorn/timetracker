@@ -324,3 +324,24 @@ $ rails c
 > companies = Company.order('name')
 > companies = Company.order('name desc')
 ```
+
+## 04_14-Scopes
+
+#### Scopes are useful to place queries that done repeative over and over again. 
+
+```bash
+$ rails c
+```
+```ruby 
+> Work.all
+> Work.fullday
+> exit
+```
+```bash
+$ rails c
+```
+```ruby 
+> Work.recent
+> Work.recent.size
+>
+```
