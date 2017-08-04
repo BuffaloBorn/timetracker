@@ -430,3 +430,9 @@ $ rails c
 ```bash
 $ rails g controller companines
 ```
+
+## 05_02-Routing And The Params Hash
+
+```bash
+$ bundle exec rake routes
+```
