@@ -438,6 +438,10 @@ $ bundle exec rake routes
 ```
 ## 05_03-Getting Values From The Model In Controller Actions
 
+Reference the git log for the files that were added and modified.
+
+## 05_04-Generating Controllers - Exercise Review
+
 Adding Controllers
 
 Add controllers, with index and show actions, for projects and for works
@@ -456,7 +460,25 @@ Add controllers, with index and show actions, for projects and for works
 rails g controller projects
 rails g controller works
 ```
-After the views and controller are filled in, run the following command:
+After the view s and controller are filled in, run the following command:
+
+```bash
+rails s
+```
+
+
+## 05_05-Adding To Our Controllers And Routes
+
+Added a root route to companies#index; this allows anyone to go to homepage without knowing any of controller or actions
+
+Add named route by providing a way to get to the work's index action: 
+
+```ruby
+get 'recentworks/:days' => 'works#index'
+```
+for seach engine we can embed (named route) urls or historial reasons with old application can use this to not break any old references
+
+There are always to direct the action methods to use a particular model method base on the params passed with in the the controller.
 
 ```bash
 rails s
