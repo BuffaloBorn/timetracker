@@ -422,4 +422,11 @@ $ rails c
 > w.save
 > w.errors
 > w.dateperformed = '2011-11-10 08:08:08'
+> w.save
+```
+
+## 05_01-Action Controller Overview
+
+```bash
+$ rails g controller companines
 ```
