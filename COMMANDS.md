@@ -436,3 +436,28 @@ $ rails g controller companines
 ```bash
 $ bundle exec rake routes
 ```
+## 05_03-Getting Values From The Model In Controller Actions
+
+Adding Controllers
+
+Add controllers, with index and show actions, for projects and for works
+
+1. "rails g controller projects" (do the same for wors)
+
+2. add routes for "projects" and "works"
+
+3. create "index" and "show" actions in the controller for "projects" and for "works"
+
+4. create "index.html.erb" and "show.html.erb" view templates for "projects" and for "works"
+
+5. test it out: "rails s" from the command line
+
+```bash
+rails g controller projects
+rails g controller works
+```
+After the views and controller are filled in, run the following command:
+
+```bash
+rails s
+```
