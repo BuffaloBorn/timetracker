@@ -1,9 +1,8 @@
 class CompaniesController < ApplicationController
     def index
+        @companies = Company.all
     end
 
     def show
-        @customer_id = params[:id]
-        @hello = 'hello there'
-    end
+   end
 end
