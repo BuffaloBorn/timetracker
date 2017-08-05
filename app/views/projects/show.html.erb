@@ -2,3 +2,6 @@
 
 <p>Company: <%=@project.company.name %></p>
 <p>Default Rate: <%=@project.default_rate%></p>
+<p>Slug: <%= @project.slug %></p>
+
+<p><%= link_to 'All Projects', projects_path %></p>

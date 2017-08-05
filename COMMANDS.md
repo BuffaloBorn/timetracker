@@ -471,15 +471,49 @@ rails s
 
 Added a root route to companies#index; this allows anyone to go to homepage without knowing any of controller or actions
 
-Add named route by providing a way to get to the work's index action: 
+Adding a named route, to your app as seen below, which provides a way to access the work_controller's index action: 
 
 ```ruby
 get 'recentworks/:days' => 'works#index'
 ```
-for seach engine we can embed (named route) urls or historial reasons with old application can use this to not break any old references
+For seach engines,  we can embed (named routes) urls or for historial reasons for older applications can use these types of named routes to existug urls so they are not broken when trying to reference them. This fills in the realm of keeping api alive when cutting over to new applications
 
 There are always to direct the action methods to use a particular model method base on the params passed with in the the controller.
 
 ```bash
 rails s
+```
+
+## 05_06-Adding A Slug Route For Projects
+
+Permalink is a way to blog post are expose as url without the system. 
+
+Slugs are better ways to provide permalink were there are no spaces, funny characters, and single string that are unique among the database entries.
+
+```bash
+rails g migration add_slug_to_projects
+bundle exec rake db:migrate
+bundle exec rake db:fixtures:load
+```
+Remember: ':' is a wild card. So when using route like 
+
+ get 'timetrackerproject/:slug' => 'projects#show' translates the following: 
+ 
+ http://localhost:3000/timetrackerproject/xyz to  http://localhost:3000/projects/xyz
+ 
+ We've modified the show method in the project controller to handle this type route
+ 
+##### Note: Make sure to use the correct versions on the 'prefix verb' when using them in view templetes because *projects_path* is not the same as *project_path*. *project_path* needs a :id to render properly; where *projects_path* does not require :id
+
+Below is example of the type error is generated when the *project_path* is used instead *projects_path*
+
+```ruby
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"projects", :slug=>"project-xyz"}, missing required keys: [:id]):
+    4: <p>Default Rate: <%=@project.default_rate%></p>
+    5: <p>Slug: <%= @projectb.slug %></p>
+    6: 
+    7: <p><%= link_to 'All Projects', project_path %></p>
+  
+app/views/projects/show.html.erb:7:in `_app_views_projects_show_html_erb___1921419614_58466820'
+
 ```

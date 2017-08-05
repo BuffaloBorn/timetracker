@@ -14,7 +14,7 @@ class Work < ApplicationRecord
 	scope :recent, -> { where("datetimeperformed > '#{Time.now - 7.days}'")}
 
     def self.recentdays(numdaysago)
-        since_date = TIme.now - numdaysago.to_i.days
+        since_date = Time.now - numdaysago.to_i.days
         where("datetimeperformed > '#{since_date}'")
     end
 
