@@ -12,12 +12,12 @@
       <div id="container">
           <header>
              <nav>
-                 <ul>
-                     <%= display_nav_item('Companies', 'companies', companies_path) %>
-                     <%= display_nav_item('Projects', 'projects', projects_path) %>
-                     <%= display_nav_item('Works', 'works', works_path) %>
-                 </ul>
-             </nav>
+			     <ul>
+				    <% nav_items.each do |nav_item| %>
+					   <%= display_nav_item(nav_item[:displaytext], nav_item[:controllername], nav_item[:linkurl]) %>
+				    <% end %>
+			     </ul>
+		      </nav>
           </header>
           <section id="main">
               <article>

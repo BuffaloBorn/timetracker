@@ -537,3 +537,7 @@ You can leave this running for the following steps
 rails s
 ```
 In this section, you can refer to the commit comments
+
+In general if you have view base logic, programming with if statements and loops it would not be a bad idea to abract that in a helper method. Sometimes it even better to convert code that display the navigation in an array if this type of code changes often. You can place the array in the application_helper.rb, the refactoring allows the code more maintainable in the near future. 
+
+
