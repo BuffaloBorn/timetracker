@@ -348,6 +348,8 @@ $ rails c
 
 ## 04_15-Validations
 
+[Rails Validations](guides.rubyonrails.org/action_record_validations.html)
+
 #### Validations make you rails apps database-agnostic. Allowng the capacity of rails app to function with any vendor’s database management system (DBMS).
 
 ```bash
@@ -516,4 +518,14 @@ ActionView::Template::Error (No route matches {:action=>"show", :controller=>"pr
   
 app/views/projects/show.html.erb:7:in `_app_views_projects_show_html_erb___1921419614_58466820'
 
+```
+
+## 06_01-Action View Overview
+
+[Rails Guides](guides.rubyonrails.org/layouts_and_rending.html)
+
+## 06_02-Setting The Global Layout
+
+```bash
+rails s
 ```
