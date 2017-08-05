@@ -13,9 +13,9 @@
           <header>
              <nav>
                  <ul>
-                     <li<%= controller_name == 'companies' ? raw(' class="active"') : ''%>><%= link_to 'Companies', companies_path %></li>
-                     <li<%= controller_name == 'projects' ? raw(' class="active"') : ''%>><%= link_to 'Projects', projects_path %></li>
-                     <li<%= controller_name == 'works' ? raw(' class="active"') : ''%>><%= link_to 'Works', works_path %></li>
+                     <%= display_nav_item('Companies', 'companies', companies_path) %>
+                     <%= display_nav_item('Projects', 'projects', projects_path) %>
+                     <%= display_nav_item('Works', 'works', works_path) %>
                  </ul>
              </nav>
           </header>

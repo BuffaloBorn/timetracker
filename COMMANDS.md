@@ -529,3 +529,11 @@ app/views/projects/show.html.erb:7:in `_app_views_projects_show_html_erb___19214
 ```bash
 rails s
 ```
+## 06_03-06_03-Adding A Nav - Using View Helpers
+
+You can leave this running for the following steps
+
+```bash
+rails s
+```
+In this section, you can refer to the commit comments
