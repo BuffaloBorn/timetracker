@@ -628,4 +628,10 @@ refer to commited code for this section
 ## 06_10-Displaying Related Items In The Show View
 
 For each show.html.erb, it would be nice to include the association data like the belong_to portions. 
+This adds a bit useful functional for the users. Where they can see how the data is set without having to go back and forth between pages
+
+## 06_11-Partials And Content_For
+
+[Layouts And Rendering](guides.rubyonrails.org/layouts_and_rending.html)
+
 
