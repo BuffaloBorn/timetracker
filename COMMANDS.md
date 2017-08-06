@@ -598,3 +598,25 @@ This apart of convention over configuation that rails promote. The convention of
 ## 06_07-Looping Over Collections In Views
 
 In this section, we see how the belong_to and has_many relations can be easily access. 
+
+## 06_08-Adding A To_S Method To Models
+
+It would be nice in a view templete to express more then an model's property and any other property that is associated with model. For example:
+
+```ruby
+    <tr>
+        <td><%= link_to project.name, project%></td>
+        <td><%= link_to project.company.name, project.company %></td>
+    </tr>
+
+```
+to
+
+```ruby
+    <tr>
+        <td><%= link_to project, project%></td>
+        <td><%= link_to project.company, project.company %></td>
+    </tr>
+```
+
+As you can notice, the name property is removed and the we are just calling the model name which in turn call the to_s method defined inside the model class. 
