@@ -2,9 +2,24 @@
 
 <p>Here are all of the works</p>
 
-<ul>
-    <% @works.each do |work|%>
-        <li><%= link_to work.datetimeperformed, work%></li>
+<table>
+    <tbody>
+        <tr>
+            <th>View</th>
+            <th>User</th>
+            <th>Project</th>
+            <th>Date/Time</th>
+            <th>Hours</th>
+        </tr>
+        <% @works.each do |work|%>
+            <tr>
+                <td><%= link_to 'View', work%></td>
+                <td><%= work.user%></td>
+                <td><%= work.project%></td>
+                <td><%= work.datetimeperformed.strftime('%m/%d/%Y %H:%M')%></td>
+                <td><%= work.hours%></td>
+            </tr>
     <% end %>
-</ul>
+    </tbody>
+</table>
 
