@@ -545,4 +545,19 @@ In general if you have view base logic, programming with if statements and loops
 
 [Asset Pipeline](guides.rubyonrails.org/asset_pipeline.html)
 
+Asset pipeline will automatically include all the files in the asset folder
+
 Remember that asset pipeline will minitify all the css and javascript into one file when deployed into the production environment. But for development it will render individally files to allow you to see the functions and definitions to complete the development cycle. 
+
+## 06_05-06_05-Styling The Global Template - Turbolinks
+
+[Rails Tubrolinks](https://github.com/turbolinks/turbolinks)
+
+Add reset.css is base on [Normal.css](http://necolas.github.io/normalize.css/) that makes browsers render all elements more consistently and in line with modern standards. It precisely targets only the styles that need normalizing.
+
+Turbolinks can track the URLs of asset elements in <head> from one page to the next, and automatically issue a full reload if they change. This ensures that users always have the latest versions of your application’s scripts and styles.
+
+Annotate asset elements with data-turbolinks-track="reload" and include a version identifier in your asset URLs. The identifier could be a number, a last-modified timestamp, or better, a digest of the asset’s contents, as in the following example.
+Turbolinks can be disabled on a per-link basis by annotating a link or any of its ancestors with data-turbolinks="false".
+
+From within the general.css:140, there is a media query (_@media only screen and (max-width: 699px)_) that looks at the width of the view pane and if that view pane goes under 699px; it will response accordingly.  
