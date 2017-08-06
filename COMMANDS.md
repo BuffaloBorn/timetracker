@@ -541,3 +541,8 @@ In this section, you can refer to the commit comments
 In general if you have view base logic, programming with if statements and loops it would not be a bad idea to abract that in a helper method. Sometimes it even better to convert code that display the navigation in an array if this type of code changes often. You can place the array in the application_helper.rb, the refactoring allows the code more maintainable in the near future. 
 
 
+## 06_04-Asset Pipeline Overview - Adding Some Javascript
+
+[Asset Pipeline](guides.rubyonrails.org/asset_pipeline.html)
+
+Remember that asset pipeline will minitify all the css and javascript into one file when deployed into the production environment. But for development it will render individally files to allow you to see the functions and definitions to complete the development cycle. 
