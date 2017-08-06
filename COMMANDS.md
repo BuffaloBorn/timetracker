@@ -594,5 +594,7 @@ Above can be used in javascript response wantd as a feed, anything after the ren
 
 This apart of convention over configuation that rails promote. The convention of requsting html, json or xml is server that having to setup a separate configuation to handle these request. 
 
+
 ## 06_07-Looping Over Collections In Views
 
+In this section, we see how the belong_to and has_many relations can be easily access. 
