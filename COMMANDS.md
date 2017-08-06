@@ -522,7 +522,7 @@ app/views/projects/show.html.erb:7:in `_app_views_projects_show_html_erb___19214
 
 ## 06_01-Action View Overview
 
-[Rails Guides](guides.rubyonrails.org/layouts_and_rending.html)
+[Layouts And Rendering](guides.rubyonrails.org/layouts_and_rending.html)
 
 ## 06_02-Setting The Global Layout
 
@@ -561,3 +561,38 @@ Annotate asset elements with data-turbolinks-track="reload" and include a versio
 Turbolinks can be disabled on a per-link basis by annotating a link or any of its ancestors with data-turbolinks="false".
 
 From within the general.css:140, there is a media query (_@media only screen and (max-width: 699px)_) that looks at the width of the view pane and if that view pane goes under 699px; it will response accordingly.  
+
+## 06_06-Layouts And Rendering - How Does Rails Choose A Template
+
+[Layouts And Rendering](guides.rubyonrails.org/layouts_and_rending.html)
+
+How does rails put a view to render?
+
+```bash
+rake routes
+```
+Rails looks at the request and picks the first entry that matches against pattern within the routing table.
+
+Inside the cntroller, you can issue the following rendering options:
+
+```ruby
+render nothing: true
+```
+or 
+```ruby
+render text: 'Hey there'
+```
+Above can be used in javascript response wantd as a feed, anything after the render statement is ignore. More often is seen response_to block
+
+```ruby
+    respond_to do |format|
+        format.html #show.html.erb
+        format.xml {render xml: @company}
+        format.json {render json: @company}
+    end
+```
+
+This apart of convention over configuation that rails promote. The convention of requsting html, json or xml is server that having to setup a separate configuation to handle these request. 
+
+## 06_07-Looping Over Collections In Views
+
