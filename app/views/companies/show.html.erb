@@ -1,1 +1,18 @@
-<h1><%=@company.name %></h1>
+<h1><%=@company %></h1>
+
+<p><%= link_to 'All Companies', companies_path %></p>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Project</th>
+            <th>Company</th>
+        </tr>
+        <% @company.projects.each do |project|%>
+        <tr>
+            <td><%= link_to project, project%></td>
+            <td><%= link_to project.company.name, project.company %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>

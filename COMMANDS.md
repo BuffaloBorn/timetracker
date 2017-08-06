@@ -620,3 +620,12 @@ to
 ```
 
 As you can notice, the name property is removed and the we are just calling the model name which in turn call the to_s method defined inside the model class. 
+
+## 06_09-Looping Over Collections - Exercise Review
+
+refer to commited code for this section
+
+## 06_10-Displaying Related Items In The Show View
+
+For each show.html.erb, it would be nice to include the association data like the belong_to portions. 
+

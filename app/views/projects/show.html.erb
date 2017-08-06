@@ -5,3 +5,22 @@
 <p>Slug: <%= @project.slug %></p>
 
 <p><%= link_to 'All Projects', projects_path %></p>
+
+<table>
+    <tbody>
+        <tr>
+            <th>View</th>
+            <th>User</th>
+            <th>Date/Time</th>
+            <th>Hours</th>
+        </tr>
+        <% @project.works.each do |work|%>
+            <tr>
+                <td><%= link_to 'View', work%></td>
+                <td><%= work.user%></td>
+                <td><%= work.datetimeperformed.strftime('%m/%d/%Y %H:%M')%></td>
+                <td><%= work.hours%></td>
+            </tr>
+    <% end %>
+    </tbody>
+</table>
