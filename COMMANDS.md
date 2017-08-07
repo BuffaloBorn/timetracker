@@ -635,3 +635,26 @@ This adds a bit useful functional for the users. Where they can see how the data
 [Layouts And Rendering](guides.rubyonrails.org/layouts_and_rending.html)
 
 In our project, we have a section label aside that allows us to insert content in the layout by using the content_for with aside varinale. This can be include on any view template. By default, rails will look in the same directory for the partial defined in the view template. 
+
+## 06_12-Partials For Re-Used Content
+
+When you use the same code is used in multiple places then this a great reason to use partials. Pull the code into a partial, rails provide helper methods that allow to pass in collection type, like array, and render partial for each item in the collection. If we just copy from one view template to another. It may return the following error:
+
+ActionView::Template::Error (Missing partial projects/_work, application/_work with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "C:/Users/camcgruder/git/timetracker/app/views"
+):
+
+so it must be instucted to look in the same page/view template folder as the original 
+
+```ruby
+<%= render partial: 'work', collection: @project.works %>  
+```
+ to
+
+```ruby 
+<%= render partial: 'works/work', collection: @project.works %>
+```
+
+## 06_13-Partials For Re-Used Content - Exercise Review
+
+refer to commited code for this section
