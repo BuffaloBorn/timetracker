@@ -4,8 +4,6 @@
 <p>Default Rate: <%=@project.default_rate%></p>
 <p>Slug: <%= @project.slug %></p>
 
-<p><%= link_to 'All Projects', projects_path %></p>
-
 <table>
     <tbody>
         <tr>
@@ -24,3 +22,7 @@
     <% end %>
     </tbody>
 </table>
+
+<% content_for :aside do %>
+ <% render 'sidebar' %>
+<% end %>

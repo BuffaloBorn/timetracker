@@ -1,7 +1,5 @@
 <h1><%=@company %></h1>
 
-<p><%= link_to 'All Companies', companies_path %></p>
-
 <table>
     <tbody>
         <tr>
@@ -16,3 +14,7 @@
     <% end %>
     </tbody>
 </table>
+
+<% content_for :aside do %>
+ <% render 'sidebar' %>
+<% end %>

@@ -634,4 +634,4 @@ This adds a bit useful functional for the users. Where they can see how the data
 
 [Layouts And Rendering](guides.rubyonrails.org/layouts_and_rending.html)
 
-
+In our project, we have a section label aside that allows us to insert content in the layout by using the content_for with aside varinale. This can be include on any view template. By default, rails will look in the same directory for the partial defined in the view template. 
