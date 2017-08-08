@@ -10,7 +10,7 @@ $ ls
 $ vi GEMFILE
 
 ```
-##### At of the file, add the filling line to include in our project that we've created
+##### At the beginninh of the file, add the following lines to include in our project's GEMFILE that we've created
 
 ```
 source 'https://rubygems.org'
@@ -656,5 +656,13 @@ so it must be instucted to look in the same page/view template folder as the ori
 ```
 
 ## 06_13-Partials For Re-Used Content - Exercise Review
+
+refer to commited code for this section
+
+## 07_01-Forms Overview
+
+Review of the blog's application - forms and partials
+
+## 07_02-A Create Form For Companies
 
 refer to commited code for this section
