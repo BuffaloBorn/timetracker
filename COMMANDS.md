@@ -675,4 +675,4 @@ Check out _2. Dealing with Model Helper_ in the [Form Helpers](http://guides.rub
 
 [API Form Helpers](http://api.rubyonrails.org/v5.1/classes/ActionView/Helpers/FormHelper.html) show various types form helpers plus overview of what can be added to form helpers
 
-[Making select boxes with ease](http://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease) has good information how to make select boxes. Rails makes this painless but not to easy
+[Making select boxes with ease](http://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease) has good way in how to make select boxes. Rails makes this painless but not to easy

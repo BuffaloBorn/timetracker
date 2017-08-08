@@ -1,13 +1,17 @@
 class ProjectsController < ApplicationController
-     def index
+    def index
         @projects = Project.all
     end
 
     def show
         if (params[:slug])
-          @project = Project.find_by slug: params[:slug]
+            @project = Project.find_by slug: params[:slug]
         else
-         @project = Project.find(params[:id])
+            @project = Project.find(params[:id])
         end
-   end
+    end
+
+    def new
+        @project = Project.new
+    end
 end
