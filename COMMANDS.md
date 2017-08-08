@@ -676,3 +676,37 @@ Check out _2. Dealing with Model Helper_ in the [Form Helpers](http://guides.rub
 [API Form Helpers](http://api.rubyonrails.org/v5.1/classes/ActionView/Helpers/FormHelper.html) show various types form helpers plus overview of what can be added to form helpers
 
 [Making select boxes with ease](http://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease) has good way in how to make select boxes. Rails makes this painless but not to easy
+
+## 07_04-A Create Form For Works
+
+refer to commited code for this section
+
+## 07_06-Saving The New Object - The Create Action
+
+```bash
+bundle exec rails routes
+```
+Below provides a route that allows us to send data back to the controller and creates model object to saves a new record to the database. 
+
+```ruby
+  POST   /companies(.:format)                companies#create
+```
+
+For the controller point, we can create method name create that accepts a 
+
+```ruby 
+   def create 
+    @company = Company.new(params[:company].permit(:name))
+    @company.save
+    redirect_to @company 
+   end
+```
+
+where __[:company]__ acts like a namespace or collection that can perfixed and hold multiple parameters that can de-referenced. The __.permit__ is a rails security feature that allows particular fields to be mass updated in a model object. __@company.save__ does the actual record creation to the database. 
+
+Note we are not providing a _if statement_ around the __@company.save__; we are allowing whatever outcome of the _save_ method to occurr; there could be a validation routined fired/handled but in this case it just be sallowed. 
+
+Rails provides a flash buffer to allow messages to be available across view templates. The flush can be named anything in must case it is called _:notice_
+
+The flash buffer is only available in one previous actions. If the page is refreshed the buffer will be clear out and the message will disapper.  
+

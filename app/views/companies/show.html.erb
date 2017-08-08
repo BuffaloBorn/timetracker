@@ -1,15 +1,22 @@
+<% if flash[:notice]%>
+<div class="flash notice"><%= flash[:notice] %></div>
+<% end %>
 <h1><%=@company %></h1>
 
-<table>
-    <tbody>
-        <tr>
-            <th>Project</th>
-            <th>Company</th>
-        </tr>
-       <%= render partial: 'projects/project', collection: @works.projects %>
-    </tbody>
-</table>
+<% if @company.projects.size > 0%>
+    <table>
+        <tbody>
+            <tr>
+                <th>Project</th>
+                <th>Company</th>
+            </tr>
+            <%= render partial: 'projects/project', collection: @company.projects %>
+        </tbody>
+    </table>
+<% else %>
+    <p>No projects</p>
+<% end %>
 
 <% content_for :aside do %>
- <% render 'sidebar' %>
+<% render 'sidebar' %>
 <% end %>
