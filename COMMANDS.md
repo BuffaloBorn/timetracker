@@ -564,7 +564,7 @@ From within the general.css:140, there is a media query (_@media only screen and
 
 ## 06_06-Layouts And Rendering - How Does Rails Choose A Template
 
-[Layouts And Rendering](guides.rubyonrails.org/layouts_and_rending.html)
+[Layouts And Rendering](http://guides.rubyonrails.org/layouts_and_rending.html)
 
 How does rails put a view to render?
 
@@ -632,7 +632,7 @@ This adds a bit useful functional for the users. Where they can see how the data
 
 ## 06_11-Partials And Content_For
 
-[Layouts And Rendering](guides.rubyonrails.org/layouts_and_rending.html)
+[Layouts And Rendering](http://guides.rubyonrails.org/layouts_and_rending.html)
 
 In our project, we have a section label aside that allows us to insert content in the layout by using the content_for with aside varinale. This can be include on any view template. By default, rails will look in the same directory for the partial defined in the view template. 
 
@@ -666,3 +666,13 @@ Review of the blog's application - forms and partials
 ## 07_02-A Create Form For Companies
 
 refer to commited code for this section
+
+## 07_03-Form Helper Methods And Styling The Forms 
+
+It very important to pay attention to the intance variable in the form_for
+
+Check out _2. Dealing with Model Helper_ in the [Form Helpers](http://guides.rubyonrails.org/form_helpers.html)
+
+[API Form Helpers](http://api.rubyonrails.org/v5.1/classes/ActionView/Helpers/FormHelper.html) show various types form helpers plus overview of what can be added to form helpers
+
+[Making select boxes with ease](http://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease) has good information how to make select boxes. Rails makes this painless but not to easy
