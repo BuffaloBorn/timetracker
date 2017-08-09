@@ -739,3 +739,7 @@ It tranlate to the following sql statement:
 ```
  Project Exists (1.0ms)  SELECT  1 AS one FROM "projects" WHERE "projects"."slug" IS NULL LIMIT ?  [["LIMIT", 1]]
 ```
+
+## 07_09-Validation And Forms
+
+refer to committed code for this section
