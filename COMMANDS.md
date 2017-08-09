@@ -679,7 +679,7 @@ Check out _2. Dealing with Model Helper_ in the [Form Helpers](http://guides.rub
 
 ## 07_04-A Create Form For Works
 
-refer to commited code for this section
+refer to committed code for this section
 
 ## 07_06-Saving The New Object - The Create Action
 
@@ -708,5 +708,8 @@ Note we are not providing a _if statement_ around the __@company.save__; we are 
 
 Rails provides a flash buffer to allow messages to be available across view templates. The flush can be named anything in must case it is called _:notice_
 
-The flash buffer is only available in one previous actions. If the page is refreshed the buffer will be clear out and the message will disapper.  
+The flash buffer is only available in one previous actions. If the page is refreshed the buffer will be clear out and the message will disapper. 
 
+## 07_07-The Create Action For Works
+
+refer to committed code for this section
