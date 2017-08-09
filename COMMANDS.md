@@ -713,3 +713,29 @@ The flash buffer is only available in one previous actions. If the page is refre
 ## 07_07-The Create Action For Works
 
 refer to committed code for this section
+
+## 07_08-The Create Action For Projects - Exercise Review
+
+What happens when saving record fails validation with __.save__ method?
+
+```bash
+Started POST "/projects" for 127.0.0.1 at 2017-08-08 22:54:04 -0400
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lq+v2xVr6QA43o+2bGKO5GsUJSm6EoudV81SCg765AgJ7jxD1THDxwhWamr71gTxl+LHpwKC4QWid68gb16dKw==", "project"=>{"name"=>"", "slug"=>"", "default_rate"=>"", "company_id"=>""}, "commit"=>"Create Project"}
+Unpermitted parameter: :slug
+  (0.0ms)  begin transaction
+  Project Exists (1.0ms)  SELECT  1 AS one FROM "projects" WHERE "projects"."slug" IS NULL LIMIT ?  [["LIMIT", 1]]
+   (0.5ms)  rollback transaction
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 102ms (ActiveRecord: 1.5ms)
+```
+
+From this output, we can see that it fails the following model's slug validation
+```
+ validates :slug, uniqueness: true
+```
+It tranlate to the following sql statement:
+
+```
+ Project Exists (1.0ms)  SELECT  1 AS one FROM "projects" WHERE "projects"."slug" IS NULL LIMIT ?  [["LIMIT", 1]]
+```

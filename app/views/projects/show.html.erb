@@ -4,6 +4,7 @@
 <p>Default Rate: <%=@project.default_rate%></p>
 <p>Slug: <%= @project.slug %></p>
 
+<%if @project.works.size > 0 %>
 <table>
     <tbody>
         <tr>
@@ -17,7 +18,9 @@
         <% end %>
     </tbody>
 </table>
-
+<% else %>
+<p>No work items</p>
+<% end %>
 <% content_for :aside do %>
  <% render 'sidebar' %>
 <% end %>
