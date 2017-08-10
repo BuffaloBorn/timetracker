@@ -757,8 +757,19 @@ refer to committed code for this section
 ```bash
 bundle exec rake routes
 ```
-
+It can be used as a link within show.html.erb 
 
 ```
 edit_company GET    /companies/:id/edit(.:format)       companies#edit
 ```
+
+The new.html.erb can copied over to edit.html.erb plus updates to the page header and button label
+
+## 07_13-An Edit Form For Works With Refactoring
+
+We can create partials to extract form functionial and save the new.html.erb as a edit.html.erb to save time. Now the guts/content of the two view templates are in one place, not different places. One thing about this setup, is that the buttons will always show the same as the form you copied. So you need to make adjustments, to allow the flexiablity on this setup. Inside  the _f.submit_, you place code like below: 
+
+```ruby
+<%= f.submit @work.new_record? ?  "Create Work" : "Update Work" %>
+```
+where __.new_record?__ is a boolean operation and check if it a new record or edit exiting record
