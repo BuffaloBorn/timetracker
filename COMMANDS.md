@@ -751,3 +751,14 @@ refer to committed code for this section
 ## 07_11-Validation For Projects - Exercise Review
 
 refer to committed code for this section
+
+## 07_12-Writing An Edit Form
+
+```bash
+bundle exec rake routes
+```
+
+
+```
+edit_company GET    /companies/:id/edit(.:format)       companies#edit
+```
