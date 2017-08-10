@@ -773,3 +773,7 @@ We can create partials to extract form functionial and save the new.html.erb as 
 <%= f.submit @work.new_record? ?  "Create Work" : "Update Work" %>
 ```
 where __.new_record?__ is a boolean operation and check if it a new record or edit exiting record
+
+## 07_14-Writing An Edit Form - Exercise Review
+
+Same refactoring steps for company and works - refer to committed code for this section
