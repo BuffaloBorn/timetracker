@@ -6,6 +6,11 @@
 
 <p><%= link_to 'Edit Project', edit_project_path(@project)  %></p>
 
+<div class="remoteform">
+	<h2>Add Work</h2>
+	<%= render partial: 'works/form', locals: {doajax: true} %>
+</div>
+
 <%if @project.works.size > 0 %>
 <table>
     <tbody>

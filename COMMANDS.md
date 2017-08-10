@@ -777,3 +777,11 @@ where __.new_record?__ is a boolean operation and check if it a new record or ed
 ## 07_14-Writing An Edit Form - Exercise Review
 
 Same refactoring steps for company and works - refer to committed code for this section
+
+## 07_15-Forms And Ajax
+
+[Working with Javascript in Rails](http://guides.rubyonrails.org/working_with_javascript_in_rails.html)
+
+MIME types need to be adjusted to make the create response better base on the request(aka ajax calls)
+
+JS view needs to be created to handle that inline updates 
