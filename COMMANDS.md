@@ -784,4 +784,34 @@ Same refactoring steps for company and works - refer to committed code for this 
 
 MIME types need to be adjusted to make the create response better base on the request(aka ajax calls)
 
-JS view needs to be created to handle that inline updates 
+Inside the _/projects/show.html.erb_
+
+```ruby 
+<%= render partial: 'works/form', locals: {doajax: true} %>
+```
+
+we are placing doajax setting it to __true__
+
+Inside the _/works/_form.html.erb_
+
+```ruby 
+<% doajax = false unless (defined? doajax) %>
+<%= form_for(@work, remote: doajax) do |f| %>
+```
+we have the (locals) variable that was sent over from the _"/projects/show.html.erb"_ view template and determines to enable ajax property on this form like below:
+
+```html
+data-remote="true"
+```
+
+JS view needs to be created to handle the dynamic updates on the current page
+
+Make sure when using ajax that you applied the proper css class to the correct tags or your desired effect will not. 
+```html
+<tr id="headerrow">
+```
+Above css label class was missing, this caused my ajax call to not locate the correct ```tr``` tag  
+
+```js
+.insertAfter('tr#headerrow');
+```
