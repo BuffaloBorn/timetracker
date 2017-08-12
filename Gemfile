@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-#gem 'devise'
+gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'will_paginate'
 
 git_source(:github) do |repo_name|

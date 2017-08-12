@@ -8,13 +8,18 @@ brianhoke:
   fname: Brian
   lname: Hoke
   company: bentleyhoke
+  email: bhoke@entleyhoke.com
 
 janedoe:
   fname: Jane
   lname: Doe
   company: bentleyhoke
+  email: jdoe@example.com
 
 ralphmartinez:
   fname: Ralph
   lname: Martinez
   company: clientinc
+  email: rmartinez@example.com
+
+

@@ -815,3 +815,42 @@ Above css label class was missing, this caused my ajax call to not locate the co
 ```js
 .insertAfter('tr#headerrow');
 ```
+
+## 08_01-Authentication Packages In Rails Filters
+
+[Action Controller Overview](http://guides.rubyonrails.org/action_controller_overview.html)
+
+[Action Controller Filters](http://guides.rubyonrails.org/action_controller_overview.html#filters)
+
+[Devise](https://github.com/plataformatec/devise)
+
+Place the following in the GEMFILE because the devise gem was not work with rails 5.1.3. Did some googling and was advise to use the version below:
+
+```ruby
+gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+```
+
+```bash
+buudle install
+```
+
+## 08_02-Installing Devise
+
+```bash
+$ rails g migration add_email_to_users
+$ bundle exec rake db:migrate
+$ bundle exec rake db:fixtures:load
+$ rails generate devise:install
+$ rails generate devise User
+```
+Go into the generated migration -> xxxx_add_devise_to_users and comment out the following line: 
+
+```
+ #t.string :email,              null: false, default: ""
+```
+
+```bash
+$ bundle exec rake db:migrate
+```
+
+Check the db/schema.rb for the with the new database updates
