@@ -854,3 +854,16 @@ $ bundle exec rake db:migrate
 ```
 
 Check the db/schema.rb for the with the new database updates
+
+## 08_03-Using Devise
+
+```bash
+$ bundle exec rake db:fixtures:load
+
+```
+Add the following to any controller that you would like to require login before accessing
+
+```ruby
+class ProjectsController < ApplicationController
+    before_action :authenticate_user!
+```    
