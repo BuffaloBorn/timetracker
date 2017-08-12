@@ -866,4 +866,18 @@ Add the following to any controller that you would like to require login before 
 ```ruby
 class ProjectsController < ApplicationController
     before_action :authenticate_user!
-```    
+```   
+
+## 09_01-Mailers Overview
+
+[Action Mailer Basics](http://guides.rubyonrails.org/action_mailer_basics.html)
+
+[Sending Mail](http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails)
+
+
+```bash
+$ rails g migration add_users_to_projects
+$ bundle exec rake db:migrate
+$ bundle exec rake db:fixtures:load
+$ rails s
+```

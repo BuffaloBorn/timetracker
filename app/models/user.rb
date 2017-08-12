@@ -6,6 +6,7 @@ class User < ApplicationRecord
     belongs_to :company
     has_many :works
     has_many :projects, :through => :works
+    has_many :projects
 
     validates :fname, length: { minimum: 2 }
 	validates :lname, length: { minimum: 5 }
