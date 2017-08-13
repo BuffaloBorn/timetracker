@@ -881,3 +881,48 @@ $ bundle exec rake db:migrate
 $ bundle exec rake db:fixtures:load
 $ rails s
 ```
+## 09_02-Creating And Invoking A Mailer
+
+```bash
+$ rails g mailer usermailer
+$ rails s
+```
+
+Provide the configuration information that is set in the __/config/development__ for now
+Remember that in the __/app/mailers/usermailer__, we can create email actions just like we have controller actions 
+
+This email action below, creates a instance variable just like controller, in which, the instance variable is available to the view template. 
+
+Note how this email action is making use of the _work.project.user.email_, focus on current work's  project that contain a user's email. 
+
+```ruby
+  def workcreated_email(work)
+    @work = work
+    mail(to: work.project.user.email, subject: "Work Item Posted")
+  end
+```
+
+At this point, the views that will be used with these email actions can be created in _/app/views/usermailer&#95;mailer_ directory
+
+It is best pratice to create html and text version of the email templete that will be sent to the recipents
+Because not all mail client can handle html version and text is needed to support them. 
+
+When invoking the email actions, its best pratice to place after a sucessfully record has been saved into the database. In our case, in the _/app/contoller/works.contoller.erb_ method _create_ allows the calling on the mailer defined mailer actions created in the UserMailer class
+
+```ruby
+   def create
+        @work = Work.new(params[:work].permit(:project_id, :user_id, :datetimeperformed, :hours))
+        respond_to do |format|
+            if @work.save
+                # Tell the UserMailer to send a welcome email after save
+                UserMailer.workcreated_email(@work).deliver
+                format.html { redirect_to @work, notice: 'Work Created' }
+                format.js { }
+            else
+                format.html { render 'new' }
+                format.js { }
+            end
+        end
+    end
+```
+
