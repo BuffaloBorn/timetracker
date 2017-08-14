@@ -893,7 +893,7 @@ Remember that in the __/app/mailers/usermailer__, we can create email actions ju
 
 This email action below, creates a instance variable just like controller, in which, the instance variable is available to the view template. 
 
-Note how this email action is making use of the _work.project.user.email_, focus on current work's  project that contain a user's email. 
+Note how this email action is making use of the _work.project.user.email_, focus on current work&lsquo;s  project that contain a user&lsquo;s email. 
 
 ```ruby
   def workcreated_email(work)
@@ -925,4 +925,12 @@ When invoking the email actions, its best pratice to place after a sucessfully r
         end
     end
 ```
+
+## 09_03-Mailer - Exercise Review
+
+In the previous section, we generated a email everything a work item was created to _work.project.user.email_. This case, we going to send an email to the project&lsquo;s owner everytime the project gets updated. 
+
+In case, we also need to create a new mailer action that takes in a project and corporate that new method in the project controller within the udpate method is called after a project has been sucessfully udpated.
+
+
 

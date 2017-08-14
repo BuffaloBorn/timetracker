@@ -1,14 +1,14 @@
 <%= form_for(@project) do |f| %>
 
 <% if @project.errors.any? %>
-    <div id="errors">
-        <p>Please correct the following <%= pluralize(@project.errors.count, "error") %>:</p>
-        <ul>
-            <% @project.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        </ul>
-    </div>
+<div id="errors">
+    <p>Please correct the following <%= pluralize(@project.errors.count, "error") %>:</p>
+    <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
 <% end %>
 
 <div>
@@ -29,5 +29,9 @@
 </div>
 <div>
     <%= f.submit @project.new_record? ?  "Create Project" : "Update Project" %>
+</div>
+<div>
+    <%= f.label :user_id %>
+    <%= f.collection_select(:user_id, User.all, :id, :to_s, prompt: true) %>
 </div>
 <% end %>
