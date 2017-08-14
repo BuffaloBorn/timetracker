@@ -939,3 +939,15 @@ In case, we also need to create a new mailer action that takes in a project and 
 [Rails Form Helpers: uploading-files](http://guides.rubyonrails.org/form_helpers.html#uploading-files)
 
 Follow along the this uploading files section, place the code in the right locations. 
+
+## 10_02-Files - Exercise Review
+
+When we are doing ajax calls, we do not want do a file upload process. So need code to prevent from happening. 
+
+We like tie in the file to the record that uploaded file should available for by adding a new column to _works_ table 
+
+```bash
+$ rails g migration add_doc_to_works
+$ bundle exec rake db:migrate
+$ rails s
+```
