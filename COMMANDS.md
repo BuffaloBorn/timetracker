@@ -932,5 +932,10 @@ In the previous section, we generated a email everything a work item was created
 
 In case, we also need to create a new mailer action that takes in a project and corporate that new method in the project controller within the udpate method is called after a project has been sucessfully udpated.
 
+## 10_01-Uploading Files To The Server
 
+[Rails Form Helpers](http://guides.rubyonrails.org/form_helpers.html)
 
+[Rails Form Helpers: uploading-files](http://guides.rubyonrails.org/form_helpers.html#uploading-files)
+
+Follow along the this uploading files section, place the code in the right locations. 
