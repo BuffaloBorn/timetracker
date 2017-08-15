@@ -1010,3 +1010,22 @@ Here we want to have more control over how the csv is outputted to the file. We 
 		end
 	end   
 ```
+## 11_01-Testing Rails Apps
+
+[Rails Testing](http://guides.rubyonrails.org/testing.html)
+
+Ensure we do not break any code, that was previous developed so test are great ways to perform this type of fail safe.
+
+Checkout the _/test_ directory, you will find stubs for _/test/controllers/_ and _/test/fixtures/_ where already placed initial data to pre-populate database in the dev and test environments. 
+
+If we look at  _/config/database.yml_, each environment has a entry to store its dataset perform its regions activity. This allows us to work in dependent environment without worrying about cross environment data issues from development to production. 
+
+There are also test stubs in _/test/models_ make sure what we think is working correctly is actually working properly in the lowest levels. 
+
+Will look at the various ways to look at performing test:  
+
+[ThooughBOT Shoulda](https://github.com/thoughtbot/shoulda)
+
+[RSpec](http://rspec.info/)
+
+[Factory Girl](https://github.com/thoughtbot/factory_girl_rails)
