@@ -1029,3 +1029,54 @@ Will look at the various ways to look at performing test:
 [RSpec](http://rspec.info/)
 
 [Factory Girl](https://github.com/thoughtbot/factory_girl_rails)
+
+## 11_02-Using Fixtures
+
+[Rails - Low down on fixtures](http://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures)
+
+Look at _/test/system/text&#95;helper.rb_, it instructs rails to load all fixture data into the test database  
+
+```
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
+
+class ActiveSupport::TestCase
+  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+  fixtures :all
+
+  # Add more helper methods to be used by all tests here...
+end
+```
+
+Review the _/test/fixtures/company.yml_, note that yml layout entry is like a reference id ```[->]``` to the data below it
+
+```yml
+-> bentleyhoke:
+        name: Bentley Hoke
+-> clientinc:
+        name: Client Inc.
+-> abcltd:
+        name: ABC, Ltd.
+```
+So we can reference this in other yml files as such, _/test/fixtures/companies.yml_:
+
+```yml
+brianhoke:
+                fname: Brian
+                lname: Hoke
+  ----------> company: bentleyhoke
+                email: bhoke@entleyhoke.com
+   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+
+janedoe:
+                fname: Jane
+                lname: Doe
+  ----------> company: bentleyhoke
+                email: jdoe@example.com
+
+ralphmartinez:
+                fname: Ralph
+                lname: Martinez
+   ---------> company: clientinc
+                email: rmartinez@example.com
+```
