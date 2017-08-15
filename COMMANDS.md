@@ -988,3 +988,25 @@ Add the following to the bottom of ```/app/models/project.rb``` model
     end
  end
 ```
+
+## 10_04-CSV Exporting - Exercise Review
+
+Here we want to have more control over how the csv is outputted to the file. We can created an array to force the headers be displayed how we would like
+
+```ruby
+   def self.export_csv(projects)
+		CSV.generate() do |csv|
+			csv << ['name','company','default_rate','created_at','owner','most recent work item']
+			projects.each do |project|
+				csv << 	[
+						project.name,
+						project.company,
+						project.default_rate,
+						project.created_at,
+						project.user,
+						project.works.order('created_at DESC').first
+						]
+			end
+		end
+	end   
+```
