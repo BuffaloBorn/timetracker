@@ -1080,3 +1080,139 @@ ralphmartinez:
    ---------> company: clientinc
                 email: rmartinez@example.com
 ```
+## 11_03-Writing Tests - Model Tests
+
+[Rails Testing](http://guides.rubyonrails.org/testing.html)
+
+[Rails Unit Testing Model (Model Testing)](http://guides.rubyonrails.org/testing.html#model-testing)
+
+Make sure you run the followig commands in order if it your first time or recieved migration error when just running the second command below 
+
+```bash
+$ bundle exec rake db:migrate RAILS_ENV=test
+$ bundle exec rake test test/models/work_test.rb
+```
+The following assertion test emtered in  _/test/models/work_test.rb_
+
+```ruby
+class WorkTest < ActiveSupport::TestCase
+  test "work should not save with no associated user" do
+		work = Work.first
+		assert work.valid?, "work should be valid"
+		work.user_id = nil
+		assert_not work.valid?, "work should be invalid"
+   end
+end
+```
+And we recieved the following output and everything passed without failure or errors
+
+```bash
+Run options: --seed 38148
+
+# Running:
+
+.
+
+Finished in 11.806822s, 0.0847 runs/s, 0.1694 assertions/s.
+1 runs, 2 assertions, 0 failures, 0 errors, 0 skips
+
+```
+
+Now we going remove the __not__ from last assertion and check uor reselts:  
+
+```ruby
+class WorkTest < ActiveSupport::TestCase
+  test "work should not save with no associated user" do
+		work = Work.first
+		assert work.valid?, "work should be valid"
+		work.user_id = nil
+		assert work.valid?, "work should be invalid"
+   end
+end
+```
+
+Run the following commands:
+
+```bash
+$ bundle exec rake test test/models/work_test.rb
+```
+
+```ruby
+Run options: --seed 21603
+
+# Running:
+
+F
+
+Failure:
+WorkTest#test_work_should_not_save_with_no_associated_user [C:/Users/camcgruder/git/timetracker/test/models/work_test.rb:8]:
+work should be invalid
+
+
+bin/rails test test/models/work_test.rb:4
+
+
+
+Finished in 11.433480s, 0.0875 runs/s, 0.1749 assertions/s.
+1 runs, 2 assertions, 1 failures, 0 errors, 0 skips
+
+```
+
+This results shows that _work&#95;valid?_ will pass if the following validates, this is defined in the _/app/models/work.rb_, if this is properly set as nil value or asserted to be negative or state as _asset&#95;not_
+
+```
+validates :user_id, presence: true
+```
+
+```
+Run options: --seed 10160
+
+# Running:
+
+..
+
+Finished in 11.913277s, 0.1679 runs/s, 0.4197 assertions/s.
+2 runs, 5 assertions, 0 failures, 0 errors, 0 skips
+
+```
+Now we add assertion for the following validate within the _/app/models/works.rb_
+
+```ruby
+validates :datetimeperformed, presence: true
+```
+
+```ruby
+class WorkTest < ActiveSupport::TestCase
+  test "work should not save with no associated user" do
+		work = Work.first
+		assert work.valid?, "work should be valid"
+		work.user_id = nil
+		assert work.valid?, "work should be invalid"
+   end
+
+   test "datetimeperformed should not be in the future" do
+		work = Work.first
+		assert work.valid?, "work should be valid"
+		work.datetimeperformed = Date.today + 2.years
+		assert work.invalid?, "work should be invalid"
+		assert work.errors[:datetimeperformed].any?, "work should have datetimeperformed error"
+    end
+end
+```
+```bash
+$ bundle exec rake test test/models/work_test.rb
+```
+
+Just like before we have all assertion pass without failure or errors
+
+```bash
+Run options: --seed 7528
+
+# Running:
+
+..
+
+Finished in 9.931832s, 0.2014 runs/s, 0.5034 assertions/s.
+2 runs, 5 assertions, 0 failures, 0 errors, 0 skips
+
+```
