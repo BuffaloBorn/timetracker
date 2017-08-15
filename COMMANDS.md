@@ -951,3 +951,40 @@ $ rails g migration add_doc_to_works
 $ bundle exec rake db:migrate
 $ rails s
 ```
+
+## 10_03-Exporting Content To CSV
+
+Check if we can access the csv version of ```/projects```
+```
+http://localhost:3000/projects.csv 
+```
+
+but you get the following error:
+
+```bash
+ActionController::UnknownFormat (ProjectsController#index is missing a template for this request format and variant.
+
+request.formats: ["text/csv"]
+request.variant: []):
+
+```
+so we need to add the following the ```/app/contollers/project_controller.rb``` index method
+
+```ruby
+    respond_to do |format|
+			format.html
+			format.csv { send_data Project.export_csv(@projects), type: 'text/csv; charset=utf-8; header=present', disposition: 'attachment; filename=contacts.csv' }
+    end    
+```
+Add the following to the bottom of ```/app/models/project.rb``` model
+
+```ruby
+ def self.export_csv(projects)
+    CSV.generate() do |csv|
+         csv << column_names
+            projects.each do |project|
+            csv << project.attributes.values_at(*column_names)		
+         end
+    end
+ end
+```
