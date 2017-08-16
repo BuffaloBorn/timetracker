@@ -1216,3 +1216,126 @@ Finished in 9.931832s, 0.2014 runs/s, 0.5034 assertions/s.
 2 runs, 5 assertions, 0 failures, 0 errors, 0 skips
 
 ```
+
+## 11_04-Writing Tests - Controller Tests
+ 
+[Rails Testing](http://guides.rubyonrails.org/testing.html)
+
+[Rails Functionall Testing for Controllers](http://guides.rubyonrails.org/testing.html#functional-tests-for-your-controllers)
+
+__Questions that the functional test should answer:__ 
+
+_Do a request that we submit return a validate status?_
+
+_Do we get the page that we except to receive?_
+
+_If the controller is supplying appropriate objects or collection for the view template?_
+
+When the instance variables are simple; it does warrant to have functional test created to test these types controller methods. Where ther have more complex business logic that may change frequently while developing a solution. 
+
+For example, 
+
+```ruby
+require 'test_helper'
+
+class CompaniesControllerTest < ActionController::TestCase
+
+  test "should get index" do
+		get :index
+		assert_response :success
+		assert_not_nil assigns(:companies)
+	end
+end
+```
+
+```bash
+$ bundle exec rake test test/controllers/companies_controller_test.rb
+```
+
+```
+Run options: --seed 52763
+
+# Running:
+
+E
+
+Error:
+CompaniesControllerTest#test_should_get_index:
+URI::InvalidURIError: bad URI(is not URI?): http://www.example.com:80index
+    test/controllers/companies_controller_test.rb:7:in `block in <class:CompaniesControllerTest>'
+
+
+bin/rails test test/controllers/companies_controller_test.rb:6
+
+..
+
+Finished in 11.896156s, 0.2522 runs/s, 0.4203 assertions/s.
+3 runs, 5 assertions, 0 failures, 1 errors, 0 skips
+```
+
+If you noticed, we have ab error because do not have devise connected in the functional test controller. 
+
+Let add it and re-test
+
+```ruby
+require 'test_helper'
+
+class CompaniesControllerTest < ActionController::TestCase
+
+--> include Devise::TestHelpers
+
+  test "should get index" do
+		get :index
+		assert_response :success
+		assert_not_nil assigns(:companies)
+	end
+end
+
+```
+
+Afer adding the _include Devise::TestHelpers_, recieved the following message:
+
+```
+
+DEPRECATION WARNING: [Devise] including `Devise::TestHelpers` is deprecated and will be removed from Devise.
+For controller tests, please include `Devise::Test::ControllerHelpers` instead.
+ (called from class_eval at C:/Temp/ruby/lib/ruby/gems/2.2.0/bundler/gems/devise-71fc5b351a8e/lib/devise/test_helpers.rb:4)
+Run options: --seed 22996
+
+# Running:
+
+E
+
+Error:
+CompaniesControllerTest#test_should_get_index:
+NoMethodError: undefined method `env' for nil:NilClass
+
+
+
+bin/rails test test/controllers/companies_controller_test.rb:7
+
+..
+
+Finished in 11.257912s, 0.2665 runs/s, 0.4441 assertions/s.
+3 runs, 5 assertions, 0 failures, 1 errors, 0 skips
+```
+
+```ruby
+require 'test_helper'
+
+class CompaniesControllerTest < ActionController::TestCase
+
+include Devise::Test::ControllerHelpers
+
+  test "should get index" do
+		get :index
+		assert_response :success
+		assert_not_nil assigns(:companies)
+	end
+end
+
+```
+
+There big disconnect with this version of Rails and the one that was shown in this section. I&lsquo;m using Rails 5.1.3 and think the author is using Rails 4.2
+
+Need to re-work, these test base on the [current Rails testing page](http://guides.rubyonrails.org/testing.html) 
