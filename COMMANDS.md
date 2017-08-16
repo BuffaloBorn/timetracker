@@ -1339,3 +1339,59 @@ end
 There big disconnect with this version of Rails and the one that was shown in this section. I&lsquo;m using Rails 5.1.3 and think the author is using Rails 4.2
 
 Need to re-work, these test base on the [current Rails testing page](http://guides.rubyonrails.org/testing.html) 
+
+## 12_01-Making Our App Better - Refactoring 
+	
+Look at the sidebar, its repeated on index and side partial 
+
+Review app/views/layout/application.html.erb: 
+
+```ruby
+<aside>
+       <%= user_logged_in_msg %>
+       <%= yield :aside %>
+</aside>
+```
+
+to 
+
+```ruby
+<aside>
+       <%= user_logged_in_msg %>
+       <% if content_for?(:aside)%>	
+	<%= yield :aside %>
+       <% else %>
+	<%= sidebar %>
+       <% end %>	
+</aside>
+```
+
+Add the following code to  _app/helpers/application&#95;helper.rb_:
+
+```ruby
+  def sidebar
+	unless ['sessions', 'registrations'].include?(controller_name)
+		index_title = "All #{controller_name.capitalize}"
+		index_path =  "#{controller_name}_path"
+		new_title =   "New #{controller_name.singularize.capitalize}"
+		new_path =    "new_#{controller_name.singularize.capitalize}_path"
+		raw("Helper<ul>
+<li><%= link_to index_title, eval(index_path) %></li>			
+<li><%= link_to new_title, eval(new_project) %></li>			
+</ul>")
+	end
+  end
+```
+
+add text ```'Helper'``` to help identify whuch version of sidebar is being rendered
+
+go _/apps/views/companies/index.html.erb_ and delete to the following: 
+
+```ruby
+<% content_for :aside do %>
+ <% render 'sidebar' %>
+<% end %>
+```
+Repeat the above this deletion of this code  for the following view templates [show, edit, new] for all view templates but leave app/views/works/new.html.erb un-modified. This will let us see which sidebar is a partial render and which one is a dynamic one. 
+
+These types of refactoring allows the developer the freedom to have implement specialize sidebars as partials for individial page sections and also provide globalize version within the application helper level.
