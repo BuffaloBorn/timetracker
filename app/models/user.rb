@@ -6,7 +6,7 @@ class User < ApplicationRecord
     belongs_to :company
     has_many :works
     has_many :projects, :through => :works
-    has_many :projects
+    has_many :projects_owned, :foreign_key => 'owner_id', :class_name => 'Project'
 
     validates :fname, length: { minimum: 2 }
 	validates :lname, length: { minimum: 5 }

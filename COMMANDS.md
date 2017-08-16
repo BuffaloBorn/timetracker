@@ -1395,3 +1395,87 @@ go _/apps/views/companies/index.html.erb_ and delete to the following:
 Repeat the above this deletion of this code  for the following view templates [show, edit, new] for all view templates but leave app/views/works/new.html.erb un-modified. This will let us see which sidebar is a partial render and which one is a dynamic one. 
 
 These types of refactoring allows the developer the freedom to have implement specialize sidebars as partials for individial page sections and also provide globalize version within the application helper level.
+
+## 12_02-Updating associations for maintainability
+
+The User model is going though project and then go though works to connect proper association 
+
+Review app/models/user.rb, you can see how user's
+
+```ruby
+has_many :projects, :through => :works
+has_many :projects
+```
+
+Its not very clear about ownership via the current relationship that is defined in the model
+
+Also review the the db/schema.rb
+
+the projects table dll, see that it has user_id, we need to fix that by creating migration
+```bash
+$ rails g migration change_user_to_owner_in_projects
+```
+
+In the migration add the following code: 
+
+```ruby
+def change 
+	rename_column :projects, :user_id, :owner_id
+end
+```
+Then run the following migration command:
+
+```bash
+$ bundle exec rake db:migrate 
+```
+
+In app/models/project.rb
+```ruby
+belongs_to :user 
+```
+to 
+```ruby
+belongs_to :owner, class_name: "User"
+```
+
+Because rails will think that 'owner' is a straight mapping to a actual model; the model definition needs instruct rails its not; by adding the _class&#95;name_ augument add the correct model name
+
+Now we need to update the /apps/views/projects/show.html.erb
+
+```ruby
+<p>Owner: <%= @project.user %></p> 
+```
+
+to 
+
+```ruby
+<p>Owner: <%= @project.owner %></p>
+```
+Now go back to the /app/models/user.rb
+
+```ruby
+has_many :projects_owned, :foreign_key => 'owner_id', :class_name => 'Project'
+```
+
+Need to update the following view templates: 
+* _app/views/user&#95;mailer/projectupdated&#95;email.html.erb_ 
+* _/app/views/&#95;form.html.erb_
+
+
+Note: By creating the _/app/views/companies/&#95;form.html.erb_ partial; it makes this even easier have these changes to be applied to:
+
+* _/app/views/companies/new.html.erb_ 
+* _/app/views/companies/edit.html.erb_
+        
+```ruby 
+<%= f.collection_select(:user_id, User.all, :id, :to_s, prompt: true) %>
+
+to
+
+<%= f.collection_select(:owner_id, User.all, :id, :to_s, prompt: true) %>
+
+```
+
+You see the pattern anywhere we have _.user_id_ change; it needs to be replace with _owner_id_; its better to express project.owner then project.user
+
+In addition in replacing those values, make sure the dropdown are update as well.

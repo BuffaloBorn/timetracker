@@ -32,6 +32,6 @@
 </div>
 <div>
     <%= f.label :user_id %>
-    <%= f.collection_select(:user_id, User.all, :id, :to_s, prompt: true) %>
+    <%= f.collection_select(:owner_id, User.all, :id, :to_s, prompt: true) %>
 </div>
 <% end %>
