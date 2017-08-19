@@ -1,4 +1,7 @@
 class WorksController < ApplicationController
+
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+
     def index
         if(params[:days])
             @works = Work.recentdays(params[:days]).order('datetimeperformed desc')
@@ -20,7 +23,8 @@ class WorksController < ApplicationController
     end
 
     def create
-        @work = Work.new(params[:work].permit(:project_id, :user_id, :datetimeperformed, :hours))
+        @work = Work.new(params[:work].permit(:project_id,  :datetimeperformed, :hours))
+        @work.user = current_user
         uploaded_io = params[:doc]
         if params[:doc]
             File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|

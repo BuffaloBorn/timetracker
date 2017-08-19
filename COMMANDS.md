@@ -1479,3 +1479,128 @@ to
 You see the pattern anywhere we have _.user_id_ change; it needs to be replace with _owner_id_; its better to express project.owner then project.user
 
 In addition in replacing those values, make sure the dropdown are update as well.
+
+## 12_03-Extended Exercise
+
+Extended Exercise
+
+1. Only logged in users can create a work item 
+
+	add before filter to works controller - need to use only:
+	rails action controller overview#filters
+
+	Notes: devise is wholesale (any user is appeared)  does not stop a particular user's actions
+
+2. User for work item submitted or updated should be logged-in user
+
+	remove user selection from works form
+	change works controller create, update actions to set user from current_user
+
+3. Add an "admin" role for users
+
+	write before_filter in companies controller
+	login as each user to test difference
+
+4. Only admins can add/change a company
+	
+	write before_filter in companies controller
+	login as each user to test controller
+
+5. Add pagination for works display 
+	
+	make sure GEMFILE has gem 'will_paginate'
+	ckeck out "blog": posts controller, post index view, config/application.rb
+	add paginate to @works in works index controller
+	set how many to paginate on config/application.rb
+	add pagintion links in works index view file (will_paginate @works)
+	optionally, style pagination links
+    
+## 12_04-Extended Exercise Review - Part 1
+
+We need to add before_filter  _/app/controller/work.rb_
+
+```ruby
+before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+```
+
+Now we wanted to use the current_user from devise to pass to Work modeel object 
+
+Will modify the following 
+```ruby
+@work = Work.new(params[:work].permit(:project_id, :user_id, :datetimeperformed, :hours))
+```
+to 
+
+```ruby
+@work = Work.new(params[:work].permit(:project_id,  :datetimeperformed, :hours))
+@work.user = current_user
+```
+
+Plus we need to remove the selection/dropdown becau
+
+se we not passing the user id to the work controller   
+
+```ruby
+	<div>
+		<%= f.label :user_id %>
+		<%= f.collection_select(:user_id, User.all.order('lname, fname'), :id, :to_s, prompt: true) %>
+	</div>
+```
+
+Add admin role to user table via migration
+
+```bash
+$  rails g migration add_admin_to_user
+$  bundle exec rake db:migrate
+```
+
+In the migration file, we add the following
+
+```ruby
+def change
+    add_column :users, :admin, :boolean, :default => false
+end
+```
+
+Mow go to fixtures and add the add
+```yml
+brianhoke:
+  fname: Brian
+  lname: Hoke
+  company: bentleyhoke
+  email: bhoke@entleyhoke.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  admin: true
+
+janedoe:
+  fname: Jane
+  lname: Doe
+  company: bentleyhoke
+  email: jdoe@example.com
+  admin: false
+
+ralphmartinez:
+  fname: Ralph
+  lname: Martinez
+  company: clientinc
+  email: rmartinez@example.com
+  admin: false
+```
+```bash
+$  bundle exec rake db:fixture:load
+```
+
+Now we want to allow only admins the ability to go to the _app/controller/companies.rb__  
+
+```ruby 
+class CompaniesController < ApplicationController
+
+  before_filter :only_admins_create_update_company, only: [:new, :create, :edit, :update]
+...
+
+  def only_admins_create_update_company
+		redirect_to companies_path, :alert => 'Only admins can create/modify a company' unless current_user.admin 
+ end
+end
+```
+So anybody that is not admin we be redirected to companies index with a flush alert message
