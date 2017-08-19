@@ -1604,3 +1604,8 @@ class CompaniesController < ApplicationController
 end
 ```
 So anybody that is not admin we be redirected to companies index with a flush alert message
+
+## 12_05-Extended Exercise Review - Part 2
+
+Review the commits for this section. 
+

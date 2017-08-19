@@ -15,4 +15,5 @@ module Timetracker
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
   end
+WillPaginate.per_page = 8
 end
