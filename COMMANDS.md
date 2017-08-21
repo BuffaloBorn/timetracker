@@ -1659,5 +1659,21 @@ On the flip side, you can go the routes.rb and compare what is define in the rou
 
 This shows how users interact with http url and other standard base actions.
 
+## 13_02-Where To Find More Information
 
+[Ruby on Rails](rubyonrails.org) - great starting point
+
+[Rails API](api.rubyonrails.org) - dive deep into how rails really work
+
+Search helper methods for extra parameters to add to known methods
+
+[Planet Rails](www.planetrubyonrails.org) - Check out what the community is doing with rails
+
+[Rails Guides](guides.rubyonrails.org)
+
+[Twitter Account DHH](https://twitter.com/dhh?lang=en)
+
+[Rails Cast](railscasts.com/)
+
+CSS frameworks: Foundation and Bootstrao is a great addition to your skillset. 
 
