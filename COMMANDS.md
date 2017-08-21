@@ -1609,3 +1609,55 @@ So anybody that is not admin we be redirected to companies index with a flush al
 
 Review the commits for this section. 
 
+## 13_01-Tips On How To Tackle A Rails App You Inherited
+
+Here we are looking at the case; where you have inhierated an application and there nobody to ask question about the in and outs of application
+
+Now it up to you to figure out to get handle of the legency application. 
+
+Go to the rails console, it give you starting point where and how the data is retrieve from the database 
+
+In this section, we will change directory and focus on the blog application that came the soluction files for this course
+
+```bash
+$  cd blog
+$  bundle install
+$  rails console
+```
+
+```ruby
+> p = Post.first
+```
+
+This shows what fields that are availabe in the model 
+
+Go to the actual model class and show all the validation and scopes defined
+
+Back to the rails console, you can look and see where a method is defined
+
+```ruby
+Post.first.method(:sometherandommethod).source_location
+```
+
+Because some methods are not easy to locate, they can be buried in a gem or something not located in the current project
+You can also check out this with class method
+
+```ruby
+Post.method(:somerandommethod).source_location
+```
+
+Another useful technquie to use the routes commands
+
+
+```bash
+$  bundle exec rake routes
+```
+
+This allows you to see all the routes available ib the application. 
+
+On the flip side, you can go the routes.rb and compare what is define in the routes flle to what is in routes command output. 
+
+This shows how users interact with http url and other standard base actions.
+
+
+
