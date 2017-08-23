@@ -10,7 +10,7 @@ $ ls
 $ vi GEMFILE
 
 ```
-##### At the beginninh of the file, add the following lines to include in our project's GEMFILE that we've created
+##### At the beginning of the file, add the following lines to include in our project's GEMFILE that we've created
 
 ```
 source 'https://rubygems.org'
@@ -21,7 +21,6 @@ gem 'will_paginate'
 
 ```bash
 $ bundle install
-
 ```
 ## 04_02 - The Rails Console
 
@@ -35,14 +34,12 @@ User
 Project
     - Name
     - Company
-    - Default Rate 
+    - Default Rate
 Work
     - Project
     - User
     - Date Preformed
     - Number of hours
- 
-    
 ```
 ## 04_03 - Creating Models
 
@@ -65,15 +62,15 @@ Work
 ## 04_05 - Associations
 
 ```
-refer to commited code for this section
+refer to committed code for this section
 ```
 ## 04_06 - The Rails Console
 
-##### Note: These commands allows for extracting the need to use complex sql statements that would be imbeded in PHP code. For large scale whie indepth business logic in overly used without the code structure.  
+##### Note: These commands allows for extracting the need to use complex sql statements that would be imbedded in PHP code. For large scale while in-depth business logic in overly used without the code structure.  
 
 
 ```bash
-rails c 
+$ rails c
 ```
 ```ruby
 > User.first
@@ -98,13 +95,12 @@ rails c
 ```
 
 ```bash
-rails c 
+$ rails c
 ```
 
 ```ruby
 > u
 > User.first
-
 ```
 ## 04_08-Many-To-Many Associations - Testing Via The Console
 
@@ -129,8 +125,8 @@ $ rails c
 > u = User.first
 > u.company
 > p
-> w = Work.new 
-> w.project = p 
+> w = Work.new
+> w.project = p
 > w.user = u
 > w
 > w.datetimepreformed = '2013-12-10 10:03:02'
@@ -164,7 +160,7 @@ Project (Name, Company, Default Rate)
     2.      name: Second Proj
          company: ABC, Ltd.
     default rate: 125
-    
+
 Work (Project, User, Date Preformed, Number of hours)
     1. date/time : 2013-12-10 10:03:02
            user: Brian Hoke
@@ -232,7 +228,7 @@ $ rails c
 $ rake db:fixtures:load
 $ rails c
 ```
-```ruby 
+```ruby
 > User.all
 > Company.all
 > User.first.company
@@ -270,7 +266,7 @@ Project (Name, Company, Default Rate)
     2.      name: Second Proj
          company: ABC, Ltd.
     default rate: 125
-    
+
 Work (Project, User, Date Preformed, Number of hours)
     1. date/time : 2013-12-10 10:03:02
            user: Brian Hoke
@@ -292,7 +288,7 @@ ruby ternary operator:
 $ rake db:fixtures:load
 $ rails c
 ```
-```ruby 
+```ruby
 > Company.all
 > User.all
 > Project.all
@@ -308,7 +304,7 @@ $ rails c
 $ rake db:fixtures:load
 $ rails c
 ```
-```ruby 
+```ruby
 > u = User.first
 > u = User.last
 > u = User.find(767380590)
@@ -327,12 +323,12 @@ $ rails c
 
 ## 04_14-Scopes
 
-#### Scopes are useful to place queries that done repeative over and over again. 
+#### Scopes are useful to place queries that done repeative over and over again.
 
 ```bash
 $ rails c
 ```
-```ruby 
+```ruby
 > Work.all
 > Work.fullday
 > exit
@@ -340,7 +336,7 @@ $ rails c
 ```bash
 $ rails c
 ```
-```ruby 
+```ruby
 > Work.recent
 > Work.recent.size
 >
@@ -350,13 +346,13 @@ $ rails c
 
 [Rails Validations](guides.rubyonrails.org/action_record_validations.html)
 
-#### Validations make you rails apps database-agnostic. Allowng the capacity of rails app to function with any vendor’s database management system (DBMS).
+#### Validations make you rails apps database-agnostic. Allowing the capacity of rails app to function with any vendor’s database management system (DBMS).
 
 ```bash
 $ rails c
 ```
 
-```ruby 
+```ruby
 > p = Project.new
 > p.save
 > p.errors
@@ -381,7 +377,7 @@ $ rails c
 $ rails c
 ```
 
-```ruby 
+```ruby
 > w = Work.new
 > w.save
 > w.errors
@@ -405,7 +401,7 @@ $ rails c
 ```bash
 $ rails c
 ```
-```ruby 
+```ruby
 > u = User.new
 > u.save
 > u.errors
@@ -473,7 +469,7 @@ rails s
 
 Added a root route to companies#index; this allows anyone to go to homepage without knowing any of controller or actions
 
-Adding a named route, to your app as seen below, which provides a way to access the work_controller's index action: 
+Adding a named route, to your app as seen below, which provides a way to access the work_controller's index action:
 
 ```ruby
 get 'recentworks/:days' => 'works#index'
@@ -488,7 +484,7 @@ rails s
 
 ## 05_06-Adding A Slug Route For Projects
 
-Permalink is a way to blog post are expose as url without the system. 
+Permalink is a way to blog post are expose as url without the system.
 
 Slugs are better ways to provide permalink were there are no spaces, funny characters, and single string that are unique among the database entries.
 
@@ -497,14 +493,14 @@ rails g migration add_slug_to_projects
 bundle exec rake db:migrate
 bundle exec rake db:fixtures:load
 ```
-Remember: ':' is a wild card. So when using route like 
+Remember: ':' is a wild card. So when using route like
 
- get 'timetrackerproject/:slug' => 'projects#show' translates the following: 
- 
+ get 'timetrackerproject/:slug' => 'projects#show' translates the following:
+
  http://localhost:3000/timetrackerproject/xyz to  http://localhost:3000/projects/xyz
- 
+
  We've modified the show method in the project controller to handle this type route
- 
+
 ##### Note: Make sure to use the correct versions on the 'prefix verb' when using them in view templetes because *projects_path* is not the same as *project_path*. *project_path* needs a :id to render properly; where *projects_path* does not require :id
 
 Below is example of the type error is generated when the *project_path* is used instead *projects_path*
@@ -513,9 +509,9 @@ Below is example of the type error is generated when the *project_path* is used 
 ActionView::Template::Error (No route matches {:action=>"show", :controller=>"projects", :slug=>"project-xyz"}, missing required keys: [:id]):
     4: <p>Default Rate: <%=@project.default_rate%></p>
     5: <p>Slug: <%= @projectb.slug %></p>
-    6: 
+    6:
     7: <p><%= link_to 'All Projects', project_path %></p>
-  
+
 app/views/projects/show.html.erb:7:in `_app_views_projects_show_html_erb___1921419614_58466820'
 
 ```
@@ -538,7 +534,7 @@ rails s
 ```
 In this section, you can refer to the commit comments
 
-In general if you have view base logic, programming with if statements and loops it would not be a bad idea to abract that in a helper method. Sometimes it even better to convert code that display the navigation in an array if this type of code changes often. You can place the array in the application_helper.rb, the refactoring allows the code more maintainable in the near future. 
+In general if you have view base logic, programming with if statements and loops it would not be a bad idea to abract that in a helper method. Sometimes it even better to convert code that display the navigation in an array if this type of code changes often. You can place the array in the application_helper.rb, the refactoring allows the code more maintainable in the near future.
 
 
 ## 06_04-Asset Pipeline Overview - Adding Some Javascript
@@ -547,7 +543,7 @@ In general if you have view base logic, programming with if statements and loops
 
 Asset pipeline will automatically include all the files in the asset folder
 
-Remember that asset pipeline will minitify all the css and javascript into one file when deployed into the production environment. But for development it will render individally files to allow you to see the functions and definitions to complete the development cycle. 
+Remember that asset pipeline will minitify all the css and javascript into one file when deployed into the production environment. But for development it will render individally files to allow you to see the functions and definitions to complete the development cycle.
 
 ## 06_05-06_05-Styling The Global Template - Turbolinks
 
@@ -578,7 +574,7 @@ Inside the cntroller, you can issue the following rendering options:
 ```ruby
 render nothing: true
 ```
-or 
+or
 ```ruby
 render text: 'Hey there'
 ```
@@ -592,12 +588,12 @@ Above can be used in javascript response wantd as a feed, anything after the ren
     end
 ```
 
-This apart of convention over configuation that rails promote. The convention of requsting html, json or xml is server that having to setup a separate configuation to handle these request. 
+This apart of convention over configuation that rails promote. The convention of requsting html, json or xml is server that having to setup a separate configuation to handle these request.
 
 
 ## 06_07-Looping Over Collections In Views
 
-In this section, we see how the belong_to and has_many relations can be easily access. 
+In this section, we see how the belong_to and has_many relations can be easily access.
 
 ## 06_08-Adding A To_S Method To Models
 
@@ -619,7 +615,7 @@ to
     </tr>
 ```
 
-As you can notice, the name property is removed and the we are just calling the model name which in turn call the to_s method defined inside the model class. 
+As you can notice, the name property is removed and the we are just calling the model name which in turn call the to_s method defined inside the model class.
 
 ## 06_09-Looping Over Collections - Exercise Review
 
@@ -627,14 +623,14 @@ refer to commited code for this section
 
 ## 06_10-Displaying Related Items In The Show View
 
-For each show.html.erb, it would be nice to include the association data like the belong_to portions. 
+For each show.html.erb, it would be nice to include the association data like the belong_to portions.
 This adds a bit useful functional for the users. Where they can see how the data is set without having to go back and forth between pages
 
 ## 06_11-Partials And Content_For
 
 [Layouts And Rendering](http://guides.rubyonrails.org/layouts_and_rending.html)
 
-In our project, we have a section label aside that allows us to insert content in the layout by using the content_for with aside varinale. This can be include on any view template. By default, rails will look in the same directory for the partial defined in the view template. 
+In our project, we have a section label aside that allows us to insert content in the layout by using the content_for with aside varinale. This can be include on any view template. By default, rails will look in the same directory for the partial defined in the view template.
 
 ## 06_12-Partials For Re-Used Content
 
@@ -644,14 +640,14 @@ ActionView::Template::Error (Missing partial projects/_work, application/_work w
   * "C:/Users/camcgruder/git/timetracker/app/views"
 ):
 
-so it must be instucted to look in the same page/view template folder as the original 
+so it must be instucted to look in the same page/view template folder as the original
 
 ```ruby
 <%= render partial: 'work', collection: @project.works %>  
 ```
  to
 
-```ruby 
+```ruby
 <%= render partial: 'works/work', collection: @project.works %>
 ```
 
@@ -667,7 +663,7 @@ Review of the blog's application - forms and partials
 
 refer to commited code for this section
 
-## 07_03-Form Helper Methods And Styling The Forms 
+## 07_03-Form Helper Methods And Styling The Forms
 
 It very important to pay attention to the intance variable in the form_for
 
@@ -686,29 +682,29 @@ refer to committed code for this section
 ```bash
 bundle exec rails routes
 ```
-Below provides a route that allows us to send data back to the controller and creates model object to saves a new record to the database. 
+Below provides a route that allows us to send data back to the controller and creates model object to saves a new record to the database.
 
 ```ruby
   POST   /companies(.:format)                companies#create
 ```
 
-For the controller point, we can create method name create that accepts a 
+For the controller point, we can create method name create that accepts a
 
-```ruby 
-   def create 
+```ruby
+   def create
     @company = Company.new(params[:company].permit(:name))
     @company.save
-    redirect_to @company 
+    redirect_to @company
    end
 ```
 
-where __[:company]__ acts like a namespace or collection that can perfixed and hold multiple parameters that can de-referenced. The __.permit__ is a rails security feature that allows particular fields to be mass updated in a model object. __@company.save__ does the actual record creation to the database. 
+where __[:company]__ acts like a namespace or collection that can perfixed and hold multiple parameters that can de-referenced. The __.permit__ is a rails security feature that allows particular fields to be mass updated in a model object. __@company.save__ does the actual record creation to the database.
 
-Note we are not providing a _if statement_ around the __@company.save__; we are allowing whatever outcome of the _save_ method to occurr; there could be a validation routined fired/handled but in this case it just be sallowed. 
+Note we are not providing a _if statement_ around the __@company.save__; we are allowing whatever outcome of the _save_ method to occurr; there could be a validation routined fired/handled but in this case it just be sallowed.
 
 Rails provides a flash buffer to allow messages to be available across view templates. The flush can be named anything in must case it is called _:notice_
 
-The flash buffer is only available in one previous actions. If the page is refreshed the buffer will be clear out and the message will disapper. 
+The flash buffer is only available in one previous actions. If the page is refreshed the buffer will be clear out and the message will disapper.
 
 ## 07_07-The Create Action For Works
 
@@ -757,7 +753,7 @@ refer to committed code for this section
 ```bash
 bundle exec rake routes
 ```
-It can be used as a link within show.html.erb 
+It can be used as a link within show.html.erb
 
 ```
 edit_company GET    /companies/:id/edit(.:format)       companies#edit
@@ -767,7 +763,7 @@ The new.html.erb can copied over to edit.html.erb plus updates to the page heade
 
 ## 07_13-An Edit Form For Works With Refactoring
 
-We can create partials to extract form functionial and save the new.html.erb as a edit.html.erb to save time. Now the guts/content of the two view templates are in one place, not different places. One thing about this setup, is that the buttons will always show the same as the form you copied. So you need to make adjustments, to allow the flexiablity on this setup. Inside  the _f.submit_, you place code like below: 
+We can create partials to extract form functionial and save the new.html.erb as a edit.html.erb to save time. Now the guts/content of the two view templates are in one place, not different places. One thing about this setup, is that the buttons will always show the same as the form you copied. So you need to make adjustments, to allow the flexiablity on this setup. Inside  the _f.submit_, you place code like below:
 
 ```ruby
 <%= f.submit @work.new_record? ?  "Create Work" : "Update Work" %>
@@ -786,7 +782,7 @@ MIME types need to be adjusted to make the create response better base on the re
 
 Inside the _/projects/show.html.erb_
 
-```ruby 
+```ruby
 <%= render partial: 'works/form', locals: {doajax: true} %>
 ```
 
@@ -794,7 +790,7 @@ we are placing doajax setting it to __true__
 
 Inside the _/works/_form.html.erb_
 
-```ruby 
+```ruby
 <% doajax = false unless (defined? doajax) %>
 <%= form_for(@work, remote: doajax) do |f| %>
 ```
@@ -806,7 +802,7 @@ data-remote="true"
 
 JS view needs to be created to handle the dynamic updates on the current page
 
-Make sure when using ajax that you applied the proper css class to the correct tags or your desired effect will not. 
+Make sure when using ajax that you applied the proper css class to the correct tags or your desired effect will not.
 ```html
 <tr id="headerrow">
 ```
@@ -843,7 +839,7 @@ $ bundle exec rake db:fixtures:load
 $ rails generate devise:install
 $ rails generate devise User
 ```
-Go into the generated migration -> xxxx_add_devise_to_users and comment out the following line: 
+Go into the generated migration -> xxxx_add_devise_to_users and comment out the following line:
 
 ```
  #t.string :email,              null: false, default: ""
@@ -889,11 +885,11 @@ $ rails s
 ```
 
 Provide the configuration information that is set in the __/config/development__ for now
-Remember that in the __/app/mailers/usermailer__, we can create email actions just like we have controller actions 
+Remember that in the __/app/mailers/usermailer__, we can create email actions just like we have controller actions
 
-This email action below, creates a instance variable just like controller, in which, the instance variable is available to the view template. 
+This email action below, creates a instance variable just like controller, in which, the instance variable is available to the view template.
 
-Note how this email action is making use of the _work.project.user.email_, focus on current work&lsquo;s  project that contain a user&lsquo;s email. 
+Note how this email action is making use of the _work.project.user.email_, focus on current work&lsquo;s  project that contain a user&lsquo;s email.
 
 ```ruby
   def workcreated_email(work)
@@ -905,7 +901,7 @@ Note how this email action is making use of the _work.project.user.email_, focus
 At this point, the views that will be used with these email actions can be created in _/app/views/usermailer&#95;mailer_ directory
 
 It is best pratice to create html and text version of the email templete that will be sent to the recipents
-Because not all mail client can handle html version and text is needed to support them. 
+Because not all mail client can handle html version and text is needed to support them.
 
 When invoking the email actions, its best pratice to place after a sucessfully record has been saved into the database. In our case, in the _/app/contoller/works.contoller.erb_ method _create_ allows the calling on the mailer defined mailer actions created in the UserMailer class
 
@@ -928,7 +924,7 @@ When invoking the email actions, its best pratice to place after a sucessfully r
 
 ## 09_03-Mailer - Exercise Review
 
-In the previous section, we generated a email everything a work item was created to _work.project.user.email_. This case, we going to send an email to the project&lsquo;s owner everytime the project gets updated. 
+In the previous section, we generated a email everything a work item was created to _work.project.user.email_. This case, we going to send an email to the project&lsquo;s owner everytime the project gets updated.
 
 In case, we also need to create a new mailer action that takes in a project and corporate that new method in the project controller within the udpate method is called after a project has been sucessfully udpated.
 
@@ -938,13 +934,13 @@ In case, we also need to create a new mailer action that takes in a project and 
 
 [Rails Form Helpers: uploading-files](http://guides.rubyonrails.org/form_helpers.html#uploading-files)
 
-Follow along the this uploading files section, place the code in the right locations. 
+Follow along the this uploading files section, place the code in the right locations.
 
 ## 10_02-Files - Exercise Review
 
-When we are doing ajax calls, we do not want do a file upload process. So need code to prevent from happening. 
+When we are doing ajax calls, we do not want do a file upload process. So need code to prevent from happening.
 
-We like tie in the file to the record that uploaded file should available for by adding a new column to _works_ table 
+We like tie in the file to the record that uploaded file should available for by adding a new column to _works_ table
 
 ```bash
 $ rails g migration add_doc_to_works
@@ -956,7 +952,7 @@ $ rails s
 
 Check if we can access the csv version of ```/projects```
 ```
-http://localhost:3000/projects.csv 
+http://localhost:3000/projects.csv
 ```
 
 but you get the following error:
@@ -1016,11 +1012,11 @@ Here we want to have more control over how the csv is outputted to the file. We 
 
 Ensure we do not break any code, that was previous developed so test are great ways to perform this type of fail safe.
 
-Checkout the _/test_ directory, you will find stubs for _/test/controllers/_ and _/test/fixtures/_ where already placed initial data to pre-populate database in the dev and test environments. 
+Checkout the _/test_ directory, you will find stubs for _/test/controllers/_ and _/test/fixtures/_ where already placed initial data to pre-populate database in the dev and test environments.
 
-If we look at  _/config/database.yml_, each environment has a entry to store its dataset perform its regions activity. This allows us to work in dependent environment without worrying about cross environment data issues from development to production. 
+If we look at  _/config/database.yml_, each environment has a entry to store its dataset perform its regions activity. This allows us to work in dependent environment without worrying about cross environment data issues from development to production.
 
-There are also test stubs in _/test/models_ make sure what we think is working correctly is actually working properly in the lowest levels. 
+There are also test stubs in _/test/models_ make sure what we think is working correctly is actually working properly in the lowest levels.
 
 Will look at the various ways to look at performing test:  
 
@@ -1086,7 +1082,7 @@ ralphmartinez:
 
 [Rails Unit Testing Model (Model Testing)](http://guides.rubyonrails.org/testing.html#model-testing)
 
-Make sure you run the followig commands in order if it your first time or recieved migration error when just running the second command below 
+Make sure you run the followig commands in order if it your first time or recieved migration error when just running the second command below
 
 ```bash
 $ bundle exec rake db:migrate RAILS_ENV=test
@@ -1218,12 +1214,12 @@ Finished in 9.931832s, 0.2014 runs/s, 0.5034 assertions/s.
 ```
 
 ## 11_04-Writing Tests - Controller Tests
- 
+
 [Rails Testing](http://guides.rubyonrails.org/testing.html)
 
 [Rails Functionall Testing for Controllers](http://guides.rubyonrails.org/testing.html#functional-tests-for-your-controllers)
 
-__Questions that the functional test should answer:__ 
+__Questions that the functional test should answer:__
 
 _Do a request that we submit return a validate status?_
 
@@ -1231,9 +1227,9 @@ _Do we get the page that we except to receive?_
 
 _If the controller is supplying appropriate objects or collection for the view template?_
 
-When the instance variables are simple; it does warrant to have functional test created to test these types controller methods. Where ther have more complex business logic that may change frequently while developing a solution. 
+When the instance variables are simple; it does warrant to have functional test created to test these types controller methods. Where ther have more complex business logic that may change frequently while developing a solution.
 
-For example, 
+For example,
 
 ```ruby
 require 'test_helper'
@@ -1273,7 +1269,7 @@ Finished in 11.896156s, 0.2522 runs/s, 0.4203 assertions/s.
 3 runs, 5 assertions, 0 failures, 1 errors, 0 skips
 ```
 
-If you noticed, we have ab error because do not have devise connected in the functional test controller. 
+If you noticed, we have ab error because do not have devise connected in the functional test controller.
 
 Let add it and re-test
 
@@ -1338,13 +1334,13 @@ end
 
 There big disconnect with this version of Rails and the one that was shown in this section. I&lsquo;m using Rails 5.1.3 and think the author is using Rails 4.2
 
-Need to re-work, these test base on the [current Rails testing page](http://guides.rubyonrails.org/testing.html) 
+Need to re-work, these test base on the [current Rails testing page](http://guides.rubyonrails.org/testing.html)
 
-## 12_01-Making Our App Better - Refactoring 
-	
-Look at the sidebar, its repeated on index and side partial 
+## 12_01-Making Our App Better - Refactoring
 
-Review app/views/layout/application.html.erb: 
+Look at the sidebar, its repeated on index and side partial
+
+Review app/views/layout/application.html.erb:
 
 ```ruby
 <aside>
@@ -1353,16 +1349,16 @@ Review app/views/layout/application.html.erb:
 </aside>
 ```
 
-to 
+to
 
 ```ruby
 <aside>
        <%= user_logged_in_msg %>
-       <% if content_for?(:aside)%>	
+       <% if content_for?(:aside)%>
 	<%= yield :aside %>
        <% else %>
 	<%= sidebar %>
-       <% end %>	
+       <% end %>
 </aside>
 ```
 
@@ -1385,22 +1381,22 @@ Add the following code to  _app/helpers/application&#95;helper.rb_:
 
 add text ```'Helper'``` to help identify whuch version of sidebar is being rendered
 
-go _/apps/views/companies/index.html.erb_ and delete to the following: 
+go _/apps/views/companies/index.html.erb_ and delete to the following:
 
 ```ruby
 <% content_for :aside do %>
  <% render 'sidebar' %>
 <% end %>
 ```
-Repeat the above this deletion of this code  for the following view templates [show, edit, new] for all view templates but leave app/views/works/new.html.erb un-modified. This will let us see which sidebar is a partial render and which one is a dynamic one. 
+Repeat the above this deletion of this code  for the following view templates [show, edit, new] for all view templates but leave app/views/works/new.html.erb un-modified. This will let us see which sidebar is a partial render and which one is a dynamic one.
 
 These types of refactoring allows the developer the freedom to have implement specialize sidebars as partials for individial page sections and also provide globalize version within the application helper level.
 
 ## 12_02-Updating associations for maintainability
 
-The User model is going though project and then go though works to connect proper association 
+The User model is going though project and then go though works to connect proper association
 
-Review app/models/user.rb, you can see how user's
+Review _app/models/user.rb_, you can see how user's
 
 ```ruby
 has_many :projects, :through => :works
@@ -1416,24 +1412,24 @@ the projects table dll, see that it has user_id, we need to fix that by creating
 $ rails g migration change_user_to_owner_in_projects
 ```
 
-In the migration add the following code: 
+In the migration add the following code:
 
 ```ruby
-def change 
+def change
 	rename_column :projects, :user_id, :owner_id
 end
 ```
 Then run the following migration command:
 
 ```bash
-$ bundle exec rake db:migrate 
+$ bundle exec rake db:migrate
 ```
 
 In app/models/project.rb
 ```ruby
-belongs_to :user 
+belongs_to :user
 ```
-to 
+to
 ```ruby
 belongs_to :owner, class_name: "User"
 ```
@@ -1443,10 +1439,10 @@ Because rails will think that 'owner' is a straight mapping to a actual model; t
 Now we need to update the /apps/views/projects/show.html.erb
 
 ```ruby
-<p>Owner: <%= @project.user %></p> 
+<p>Owner: <%= @project.user %></p>
 ```
 
-to 
+to
 
 ```ruby
 <p>Owner: <%= @project.owner %></p>
@@ -1457,17 +1453,17 @@ Now go back to the /app/models/user.rb
 has_many :projects_owned, :foreign_key => 'owner_id', :class_name => 'Project'
 ```
 
-Need to update the following view templates: 
-* _app/views/user&#95;mailer/projectupdated&#95;email.html.erb_ 
+Need to update the following view templates:
+* _app/views/user&#95;mailer/projectupdated&#95;email.html.erb_
 * _/app/views/&#95;form.html.erb_
 
 
 Note: By creating the _/app/views/companies/&#95;form.html.erb_ partial; it makes this even easier have these changes to be applied to:
 
-* _/app/views/companies/new.html.erb_ 
+* _/app/views/companies/new.html.erb_
 * _/app/views/companies/edit.html.erb_
-        
-```ruby 
+
+```ruby
 <%= f.collection_select(:user_id, User.all, :id, :to_s, prompt: true) %>
 
 to
@@ -1484,7 +1480,7 @@ In addition in replacing those values, make sure the dropdown are update as well
 
 Extended Exercise
 
-1. Only logged in users can create a work item 
+1. Only logged in users can create a work item
 
 	add before filter to works controller - need to use only:
 	rails action controller overview#filters
@@ -1502,43 +1498,41 @@ Extended Exercise
 	login as each user to test difference
 
 4. Only admins can add/change a company
-	
+
 	write before_filter in companies controller
 	login as each user to test controller
 
-5. Add pagination for works display 
-	
+5. Add pagination for works display
+
 	make sure GEMFILE has gem 'will_paginate'
 	ckeck out "blog": posts controller, post index view, config/application.rb
 	add paginate to @works in works index controller
 	set how many to paginate on config/application.rb
 	add pagintion links in works index view file (will_paginate @works)
 	optionally, style pagination links
-    
+
 ## 12_04-Extended Exercise Review - Part 1
 
-We need to add before_filter  _/app/controller/work.rb_
+We need to add before&#95;filter  _/app/controller/work.rb_
 
 ```ruby
 before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 ```
 
-Now we wanted to use the current_user from devise to pass to Work modeel object 
+Now we wanted to use the current_user from devise to pass to Work model object
 
-Will modify the following 
+Will modify the following
 ```ruby
 @work = Work.new(params[:work].permit(:project_id, :user_id, :datetimeperformed, :hours))
 ```
-to 
+to
 
 ```ruby
 @work = Work.new(params[:work].permit(:project_id,  :datetimeperformed, :hours))
 @work.user = current_user
 ```
 
-Plus we need to remove the selection/dropdown becau
-
-se we not passing the user id to the work controller   
+Plus we need to remove the selection/dropdown because  we not passing the user id to the work controller   
 
 ```ruby
 	<div>
@@ -1562,7 +1556,7 @@ def change
 end
 ```
 
-Mow go to fixtures and add the add
+Now go to fixtures and add the add
 ```yml
 brianhoke:
   fname: Brian
@@ -1590,16 +1584,16 @@ ralphmartinez:
 $  bundle exec rake db:fixture:load
 ```
 
-Now we want to allow only admins the ability to go to the _app/controller/companies.rb__  
+Now we want to allow only admins the ability to go to the _app/controller/companies.rb_  
 
-```ruby 
+```ruby
 class CompaniesController < ApplicationController
 
   before_filter :only_admins_create_update_company, only: [:new, :create, :edit, :update]
 ...
 
   def only_admins_create_update_company
-		redirect_to companies_path, :alert => 'Only admins can create/modify a company' unless current_user.admin 
+		redirect_to companies_path, :alert => 'Only admins can create/modify a company' unless current_user.admin
  end
 end
 ```
@@ -1607,17 +1601,17 @@ So anybody that is not admin we be redirected to companies index with a flush al
 
 ## 12_05-Extended Exercise Review - Part 2
 
-Review the commits for this section. 
+Review the commits for this section.
 
 ## 13_01-Tips On How To Tackle A Rails App You Inherited
 
-Here we are looking at the case; where you have inhierated an application and there nobody to ask question about the in and outs of application
+Here we are looking at the case; where you have inherited an application and there nobody to ask question about the in and outs of application
 
-Now it up to you to figure out to get handle of the legency application. 
+Now it up to you to figure out to get handle of the legacy application.
 
-Go to the rails console, it give you starting point where and how the data is retrieve from the database 
+Go to the rails console, it give you starting point where and how the data is retrieve from the database
 
-In this section, we will change directory and focus on the blog application that came the soluction files for this course
+In this section, we will change directory and focus on the blog application that came the solution files for this course
 
 ```bash
 $  cd blog
@@ -1629,7 +1623,7 @@ $  rails console
 > p = Post.first
 ```
 
-This shows what fields that are availabe in the model 
+This shows what fields that are available in the model
 
 Go to the actual model class and show all the validation and scopes defined
 
@@ -1646,16 +1640,16 @@ You can also check out this with class method
 Post.method(:somerandommethod).source_location
 ```
 
-Another useful technquie to use the routes commands
+Another useful technique to use the routes commands
 
 
 ```bash
 $  bundle exec rake routes
 ```
 
-This allows you to see all the routes available ib the application. 
+This allows you to see all the routes available within the application.
 
-On the flip side, you can go the routes.rb and compare what is define in the routes flle to what is in routes command output. 
+On the flip side, you can go the routes.rb and compare what is define in the routes file to what is in routes command output.
 
 This shows how users interact with http url and other standard base actions.
 
@@ -1675,5 +1669,4 @@ Search helper methods for extra parameters to add to known methods
 
 [Rails Cast](railscasts.com/)
 
-CSS frameworks: Foundation and Bootstrao is a great addition to your skillset. 
-
+CSS frameworks: Foundation and Bootstrap is a great addition to your skillset.
