@@ -1379,7 +1379,7 @@ Add the following code to  _app/helpers/application&#95;helper.rb_:
   end
 ```
 
-add text ```'Helper'``` to help identify whuch version of sidebar is being rendered
+add text ```'Helper'``` to help identify which version of sidebar is being rendered
 
 go _/apps/views/companies/index.html.erb_ and delete to the following:
 
